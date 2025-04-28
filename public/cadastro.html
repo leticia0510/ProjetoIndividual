@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+</head>
+<body>
+    <label>Nome</label>
+    <input type="text" id="ipt_nome">
+    <label>Sobrenome</label>
+    <input type="text" id="ipt_sobrenome">
+    <label>Data de Nascimento</label>
+    <input type="date" id="ipt_dtNascimento">
+    <label>E-mail</label>
+    <input type="email" id="ipt_email">
+    <label>Confirmar E-mail</label>
+    <input type="email" id="ipt_confirmarEmail">
+    <label>Senha</label>
+    <input type="password" id="ipt_senha">
+    <label>Confirmar Senha</label>
+    <input type="password" id="ipt_confirmarSenha">
+    <button onclick="cadastrar()">Cadastrar</button>
+</body>
+</html>
+<script>
+    function cadastrar(){
+        let nome = ipt_nome.value;
+        let sobrenome = ipt_sobrenome.value;
+        let dtNascimento = ipt_dtNascimento.value;
+        let email = ipt_email.value;
+        let confirmarEmail = ipt_confirmarEmail.value;
+        let senha = ipt_senha.value;
+        let confirmarSenha = ipt_confirmarSenha;
+    }
+</script>
