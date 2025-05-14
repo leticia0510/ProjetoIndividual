@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivinhação</title>
+</head>
+
+<body>
+    <header>
+
+    </header>
+    <main>
+        <h1>Adivinhe o número de 1 a 100</h1>
+        <div class="caixaTextoAjuda">
+
+        </div>
+        <div class="tentativasAdivinhas">
+            <label>Escolha um número: </label>
+            <input type="number" id="ipt_numEscolhido">
+            <button onclick="numeroEscolhido()">Acertei?</button>
+        </div>
+        <div class="resultadoJogo">
+            <div id="div_resultadoJogo"></div>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+</body>
+
+</html>
+<script>
+    let vidas = 5;
+    console.log(vidas)
+    let geradorNum = (Math.random() * 99) + 1;
+    let numAleatorio = Math.round(geradorNum);
+
+    function numeroEscolhido() {
+        let numEscolhido = Number(ipt_numEscolhido.value);
+        console.log(numAleatorio);
+
+        for (let i = 0; i < vidas; i++) {
+            if (numEscolhido == numAleatorio) {
+                div_resultadoJogo.innerHTML = `Acertou`
+                break;
+                vidas--;
+            } else if (numEscolhido < numAleatorio) {
+                div_resultadoJogo.innerHTML = `Tente um número mais alto`;
+                vidas--;
+
+            } else if (numEscolhido > numAleatorio) {
+                div_resultadoJogo.innerHTML = `Tente um número mais baixo`;
+                vidas--;
+
+            }
+        }
+
+        if(vidas == 0){
+        div_resultadoJogo.innerHTML += `Fim de jogo`;
+
+        }
+        
+    }
+</script>
