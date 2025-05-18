@@ -22,15 +22,15 @@
     <header>
         <div class="container">
             <div class="logo">
-                <a href=""><img src="" alt=""></a>
+                <a href="index.html"><img src="" alt=""></a>
             </div>
             <nav class="navbar">
                 <a href="index.html">Home</a>
-                <a href="simulador.html">Mundo</a>
-                <a href="#">Post</a>
-                <a href="cadastro.html">Jogos</a>
-                <a href="">Pesonagens</a>
-                <a class="agora" href="">Login</a>
+                <a href="simulador.html">Sobre Nós</a>
+                <a href="posts.html">Post</a>
+                <a href="jogos.html">Jogos</a>
+                <a href="descubra.html">Descubra</a>
+                <a class="agora" href="login.html">Login</a>
             </nav>
         </div>
     </header>
@@ -60,7 +60,7 @@
                 <div id="div_aguardar" class="loading-div">
                     <img src="./assets/circle-loading.gif" id="loading-gif">
                 </div>
-
+                <a href="cadastro.html">não posui cadastro?</a>
                 <div id="div_erros_login"></div>
             </div>
         </div>
@@ -122,7 +122,6 @@
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
-                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
 
                     setTimeout(function () {
                         window.location = "./dashboard/cards.html";

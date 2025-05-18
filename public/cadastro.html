@@ -20,29 +20,16 @@
   <header>
     <div class="container">
         <div class="logo">
-            <a href=""><img src="" alt=""></a>
+            <a href="index.html"><img src="" alt=""></a>
         </div>
-        <ul class="navbar">
-            <li>
-                <a href="index.html">Home</a>
-            </li>
-            <li>
-                <a href="simulador.html">Mundo</a>
-            </li>
-            <li>|</li>
-            <li>
-                <a href="#">Post</a>
-            </li>
-            <li>
-                <a href="cadastro.html">Jogos</a>
-            </li>
-            <li>
-                <a href="">Pesonagens</a>
-            </li>
-            <li class="agora">
-                <a href="">Login</a>
-            </li>
-        </ul>
+        <nav class="navbar">
+            <a href="index.html">Home</a>
+            <a href="simulador.html">Sobre Nós</a>
+            <a href="posts.html">Post</a>
+            <a href="jogos.html">Jogos</a>
+            <a href="descubra.html">Descubra</a>
+            <a href="login.html">Login</a>
+        </nav>
     </div>
 </header>
   <!--header fim-->
@@ -57,14 +44,6 @@
       <div class="card card-cadastro">
         <h2>Bem-vindo!</h2>
         <div class="formulario">
-          <!--
-                         Para inserir mais um campo, copie uma das inputs abaixo.
-                         Assim que inserir vá para o script abaixo.
-                     -->
-          <div class="campo">
-            <span>Código de ativação:</span>
-            <input id="codigo_input" type="text" placeholder="Insira aqui seu código" />
-          </div>
           <div class="campo">
             <span>Nome:</span>
             <input id="nome_input" type="text" placeholder="Seu nome" />
@@ -72,6 +51,10 @@
           <div class="campo">
             <span>E-mail:</span>
             <input id="email_input" type="text" placeholder="meuemail@provedor.com" />
+          </div>
+          <div class="campo">
+            <span>Data de Nascimento:</span>
+            <input id="dtNasc_input" type="date" placeholder="Seu nome" />
           </div>
           <div class="campo">
             <span>Senha:</span>
@@ -116,10 +99,9 @@
     // Agora vá para o método fetch logo abaixo
     var nomeVar = nome_input.value;
     var emailVar = email_input.value;
+    var dtNascVar = dtNasc_input.value;
     var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
-    var codigoVar = codigo_input.value;
-    var idEmpresaVincular
 
     // Verificando se há algum campo em branco
     if (
@@ -127,7 +109,7 @@
       emailVar == "" ||
       senhaVar == "" ||
       confirmacaoSenhaVar == "" ||
-      codigoVar == ""
+      dtNascVar == ""
     ) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
@@ -137,19 +119,6 @@
       return false;
     } else {
       setInterval(sumirMensagem, 5000);
-    }
-
-    // Verificando se o código de ativação é de alguma empresa cadastrada
-    for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
-      if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
-        idEmpresaVincular = listaEmpresasCadastradas[i].id
-        console.log("Código de ativação válido.");
-        break;
-      } else {
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
-        finalizarAguardar();
-      }
     }
 
     // Enviando o valor da nova input
@@ -164,7 +133,7 @@
         nomeServer: nomeVar,
         emailServer: emailVar,
         senhaServer: senhaVar,
-        idEmpresaVincularServer: idEmpresaVincular
+        dtNascServer: dtNascVar
       }),
     })
       .then(function (resposta) {
@@ -192,26 +161,6 @@
       });
 
     return false;
-  }
-
-  // Listando empresas cadastradas 
-  function listar() {
-    fetch("/empresas/listar", {
-      method: "GET",
-    })
-      .then(function (resposta) {
-        resposta.json().then((empresas) => {
-          empresas.forEach((empresa) => {
-            listaEmpresasCadastradas.push(empresa);
-
-            console.log("listaEmpresasCadastradas")
-            console.log(listaEmpresasCadastradas[0].codigo_ativacao)
-          });
-        });
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
   }
 
   function sumirMensagem() {
