@@ -1,7 +1,8 @@
-var avisoModel = require("../models/avisoModel");
+const { text } = require("express");
+var postsModel = require("../models/postsModel");
 
 function listar(req, res) {
-    avisoModel.listar().then(function (resultado) {
+    postsModel.listar().then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -17,7 +18,7 @@ function listar(req, res) {
 function listarPorUsuario(req, res) {
     var idUsuario = req.params.idUsuario;
 
-    avisoModel.listarPorUsuario(idUsuario)
+    postsModel.listarPorUsuario(idUsuario)
         .then(
             function (resultado) {
                 if (resultado.length > 0) {
@@ -39,10 +40,10 @@ function listarPorUsuario(req, res) {
         );
 }
 
-function pesquisarDescricao(req, res) {
-    var descricao = req.params.descricao;
+function pesquisarTextos(req, res) {
+    var texto = req.params.texto;
 
-    avisoModel.pesquisarDescricao(descricao)
+    postsModel.pesquisarTextos(texto)
         .then(
             function (resultado) {
                 if (resultado.length > 0) {
@@ -61,18 +62,16 @@ function pesquisarDescricao(req, res) {
 }
 
 function publicar(req, res) {
-    var titulo = req.body.titulo;
-    var descricao = req.body.descricao;
+    var texto = req.body.texto;
+    var fotoPerfil = req.body.fotoPerfil;
     var idUsuario = req.params.idUsuario;
 
-    if (titulo == undefined) {
+    if (texto == undefined) {
         res.status(400).send("O título está indefinido!");
-    } else if (descricao == undefined) {
-        res.status(400).send("A descrição está indefinido!");
     } else if (idUsuario == undefined) {
         res.status(403).send("O id do usuário está indefinido!");
     } else {
-        avisoModel.publicar(titulo, descricao, idUsuario)
+        postsModel.publicar(texto, fotoPerfil, idUsuario)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -89,10 +88,10 @@ function publicar(req, res) {
 }
 
 function editar(req, res) {
-    var novaDescricao = req.body.descricao;
-    var idAviso = req.params.idAviso;
+    var novoTexto = req.body.texto;
+    var idPost = req.params.idPost;
 
-    avisoModel.editar(novaDescricao, idAviso)
+    postsModel.editar(novoTexto, idPost)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -109,9 +108,9 @@ function editar(req, res) {
 }
 
 function deletar(req, res) {
-    var idAviso = req.params.idAviso;
+    var idPost = req.params.idPost;
 
-    avisoModel.deletar(idAviso)
+    postsModel.deletar(idPost)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -129,7 +128,7 @@ function deletar(req, res) {
 module.exports = {
     listar,
     listarPorUsuario,
-    pesquisarDescricao,
+    pesquisarTextos,
     publicar,
     editar,
     deletar
