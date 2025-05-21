@@ -1,6 +1,50 @@
-*{
+@import url('https://fonts.googleapis.com/css2?family=Della+Respira&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
     margin: 0;
     padding: 0;
     border: 0;
     box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+.container {
+    margin: 0 80px;
+}
+
+/* CABEÇALHO */
+header {
+    position: fixed;
+    width: 100%;
+    background-color: white;
+}
+
+header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header .logo img {
+    width: 120px;
+}
+
+header .agora {
+    color: #f2ab27;
+}
+
+header a {
+    margin: 0 10px;
+    color: black;
+    font: 400 15px "Work Sans", sans-serif;
+}
+
+
+/* FIM DO CABEÇALHO */
+.banner {
+    background-color: #04B2D9;
+    height: 500px;
 }
