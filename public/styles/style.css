@@ -26,6 +26,7 @@ header .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 header .logo img {
@@ -39,12 +40,66 @@ header .agora {
 header a {
     margin: 0 10px;
     color: black;
-    font: 400 15px "Work Sans", sans-serif;
+    font: 400 2.5vh "Work Sans", sans-serif;
 }
 
 
 /* FIM DO CABEÇALHO */
+main {
+    padding-top: 60px;
+    margin-bottom: 100px
+}
+
 .banner {
     background-color: #04B2D9;
     height: 500px;
+}
+
+
+/* JOGOS */
+.bannerJogo{
+    width: 100%;
+    height: 40vh;
+    background-color: #04B2D9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.jogosDisponiveis {
+    margin-top: 70px;
+}
+
+.informacaoJogo {
+    margin: 40px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.cardJogo {
+    width: 350px;
+    height: 200px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+
+.jogo2 {
+    order: 1;
+}
+
+.descricaoJogo {
+    width: 700px;
+}
+
+footer {
+    background-color: #f2ab27;
+}
+
+footer .container {
+    text-align: center;
+    padding: 50px;
 }
