@@ -1,7 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Della+Respira&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* RESET CSS */
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
 /* pagina mural */
-
-@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
 body {
   margin: 0;
   padding: 0;
@@ -15,7 +22,6 @@ body {
 
 .dash-right .avisos {
   width: 100%;
-  color: rgb(216, 216, 216);
   font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -95,7 +101,6 @@ body {
 }
 
 .div-results .feed-container {
-  background-color: #212124;
   border-radius: 5px;
   margin-bottom: 80px;
 }
@@ -111,16 +116,12 @@ body {
 
 /* pagina graficos */
 
-.dash-header {
-  background-color: #212124;
-}
 
 .dash {
   width: 80%;
   position: relative;
   top: 0;
   left: 20%;
-  background-color: #161618;
   height: 100vh;
   overflow: auto;
 }
@@ -132,11 +133,9 @@ body {
   width: 70%;
   margin: auto;
   margin-top: 10px;
-  background-color: #212124;
 }
 
 .area-parametros-alerta .titulo-legenda {
-  color: white;
   font-weight: 600;
   width: fit-content;
   margin: 10px 20px;
@@ -206,7 +205,6 @@ body {
   /* text-align: center; */
   height: 180px;
   /* justify-content: right; */
-  background-color: #212124;
   font-size: 20px;
 }
 
@@ -334,7 +332,6 @@ canvas {
 
 .header-left a {
   text-decoration: none;
-  color: white;
 }
 
 .header-left {
@@ -349,14 +346,12 @@ canvas {
   justify-content: space-evenly;
   align-items: center;
   border-right: 3px solid #32b9cd;
-  background-color: #212124;
 }
 
 .dash-right {
   display: flex;
   width: 70%;
   height: fit-content;
-  background-color: #161618;
   position: relative;
   top: 0;
   left: 25%;

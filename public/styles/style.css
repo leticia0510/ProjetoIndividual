@@ -1,11 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Della+Respira&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
+/* RESET CSS */
 * {
     margin: 0;
     padding: 0;
     border: 0;
     box-sizing: border-box;
-}
+  }
 
 a {
     text-decoration: none;
@@ -19,7 +20,8 @@ a {
 header {
     position: fixed;
     width: 100%;
-    background-color: white;
+    background-color: #fff;
+    padding: 10px 0;
 }
 
 header .container {
@@ -43,11 +45,16 @@ header a {
     font: 400 2vh "Work Sans", sans-serif;
 }
 
+header a:hover {
+    color: #f2ab27;
+    transition: ease-in 0.5;
+}
+
 
 /* FIM DO CABEÇALHO */
 /* BANNER */
 main {
-    padding-top: 60px;
+    padding-top: 90px;
     margin-bottom: 100px
 }
 

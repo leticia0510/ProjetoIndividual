@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>AquaTech | Cadastro</title>
+  <title>Hora de AVentura | Cadastro</title>
 
   <script src="./js/sessao.js"></script>
 
@@ -50,6 +50,10 @@
           <div class="campo">
             <span>E-mail:</span>
             <input id="email_input" type="text" placeholder="meuemail@provedor.com" />
+          </div>
+          <div class="campo">
+            <span>Nickname</span>
+            <input id="nickname_input" type="text" placeholder="Princesa Jujuba" />
           </div>
           <div class="campo">
             <span>Data de Nascimento:</span>
@@ -97,6 +101,7 @@
     var emailVar = email_input.value;
     var dtNascVar = dtNasc_input.value;
     var senhaVar = senha_input.value;
+    var nicknameVar = nickname_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
 
     // Verificando se há algum campo em branco
@@ -104,12 +109,13 @@
       nomeVar == "" ||
       emailVar == "" ||
       senhaVar == "" ||
+      nicknameVar == "" ||
       confirmacaoSenhaVar == "" ||
       dtNascVar == ""
     ) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
+        "(Preencha todos os campos)";
 
       finalizarAguardar();
       return false;
@@ -129,7 +135,8 @@
         nomeServer: nomeVar,
         emailServer: emailVar,
         senhaServer: senhaVar,
-        dtNascServer: dtNascVar
+        dtNascServer: dtNascVar,
+        nicknameServer: nicknameVar
       }),
     })
       .then(function (resposta) {
