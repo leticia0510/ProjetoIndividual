@@ -14,7 +14,7 @@ a {
 .container {
     margin: 0 80px;
 }
-
+/* PRINCIPAL */
 /* CABEÇALHO */
 header {
     position: fixed;
@@ -40,21 +40,46 @@ header .agora {
 header a {
     margin: 0 10px;
     color: black;
-    font: 400 2.5vh "Work Sans", sans-serif;
+    font: 400 2vh "Work Sans", sans-serif;
 }
 
 
 /* FIM DO CABEÇALHO */
+/* BANNER */
 main {
     padding-top: 60px;
     margin-bottom: 100px
 }
 
 .banner {
-    background-color: #04B2D9;
-    height: 500px;
+    background: url(../assets/imgs/banner.png) center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 700px;
+    margin: 0 40px;
+    border-radius: 40px;
+}
+/* FIM DO BANNER */
+/* PERSONAGENS */
+#Personagens {
+    margin-top: 100px;
 }
 
+.cardsPersonagens {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card {
+    width: 280px;
+    height: 400px;
+    background-color: #04B2D9;
+    border-radius: 40px;
+}
+
+/* FIM PERSONAGENS */
+
+/* FIM DO PRINCIPAL */
 
 /* JOGOS */
 .bannerJogo{
