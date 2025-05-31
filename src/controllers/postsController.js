@@ -1,4 +1,3 @@
-const { text } = require("express");
 var postsModel = require("../models/postsModel");
 
 function listar(req, res) {
@@ -10,7 +9,7 @@ function listar(req, res) {
         }
     }).catch(function (erro) {
         console.log(erro);
-        console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+        console.log("Houve um erro ao buscar os posts: ", erro.sqlMessage);
         res.status(500).json(erro.sqlMessage);
     });
 }
@@ -32,7 +31,7 @@ function listarPorUsuario(req, res) {
             function (erro) {
                 console.log(erro);
                 console.log(
-                    "Houve um erro ao buscar os avisos: ",
+                    "Houve um erro ao buscar os posts: ",
                     erro.sqlMessage
                 );
                 res.status(500).json(erro.sqlMessage);
@@ -40,10 +39,10 @@ function listarPorUsuario(req, res) {
         );
 }
 
-function pesquisarTextos(req, res) {
+function pesquisarPost(req, res) {
     var texto = req.params.texto;
 
-    postsModel.pesquisarTextos(texto)
+    postsModel.pesquisarPost(texto)
         .then(
             function (resultado) {
                 if (resultado.length > 0) {
@@ -55,7 +54,7 @@ function pesquisarTextos(req, res) {
         ).catch(
             function (erro) {
                 console.log(erro);
-                console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+                console.log("Houve um erro ao buscar os posts: ", erro.sqlMessage);
                 res.status(500).json(erro.sqlMessage);
             }
         );
@@ -63,7 +62,7 @@ function pesquisarTextos(req, res) {
 
 function publicar(req, res) {
     var texto = req.body.texto;
-    var fotoPerfil = req.body.fotoPerfil;
+    var fotoPost = req.body.fotoPost;
     var idUsuario = req.params.idUsuario;
 
     if (texto == undefined) {
@@ -71,7 +70,7 @@ function publicar(req, res) {
     } else if (idUsuario == undefined) {
         res.status(403).send("O id do usuário está indefinido!");
     } else {
-        postsModel.publicar(texto, fotoPerfil, idUsuario)
+        postsModel.publicar(texto, fotoPost, idUsuario)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -128,7 +127,7 @@ function deletar(req, res) {
 module.exports = {
     listar,
     listarPorUsuario,
-    pesquisarTextos,
+    pesquisarPost,
     publicar,
     editar,
     deletar

@@ -14,14 +14,14 @@ function listar() {
             u.senha
         FROM posts p
             INNER JOIN usuario u
-                ON a.fk_usuario = u.id;
+                ON p.fkUsuario = u.id;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
 function pesquisarTextos(texto) {
-    console.log("ACESSEI O POSTS MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pesquisarDescricao()");
+    console.log("ACESSEI O POSTS MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pesquisarPost()");
     var instrucaoSql = `
         SELECT 
             p.id AS idPost,
@@ -34,8 +34,8 @@ function pesquisarTextos(texto) {
             u.senha
         FROM posts p
             INNER JOIN usuario u
-                ON a.fk_usuario = u.id
-        WHERE a.descricao LIKE '${texto}';
+                ON p.fkUsuario = u.id
+        WHERE p.texto LIKE '${texto}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -55,7 +55,7 @@ function listarPorUsuario(idUsuario) {
             u.senha
         FROM posts p
             INNER JOIN usuario u
-                ON a.fk_usuario = u.id
+                ON p.fkUsuario = u.id
         WHERE u.id = ${idUsuario};
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -63,7 +63,7 @@ function listarPorUsuario(idUsuario) {
 }
 
 function publicar(texto, fotoPost, idUsuario) {
-    console.log("ACESSEI O POSTS MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function publicar(): ", titulo, descricao, idUsuario);
+    console.log("ACESSEI O POSTS MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function publicar(): ", texto, fotoPost, idUsuario);
     var instrucaoSql = `
         INSERT INTO posts (texto, fotoPost, fkUsuario) VALUES ('${texto}', '${fotoPost}', ${idUsuario});
     `;
@@ -72,7 +72,7 @@ function publicar(texto, fotoPost, idUsuario) {
 }
 
 function editar(textoEditado, idPost) {
-    console.log("ACESSEI O POSTS MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ", novaDescricao, idAviso);
+    console.log("ACESSEI O POSTS MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ", textoEditado, idPost);
     var instrucaoSql = `
         UPDATE posts SET texto = '${textoEditado}' WHERE id = ${idPost};
     `;
@@ -81,7 +81,7 @@ function editar(textoEditado, idPost) {
 }
 
 function deletar(idPost) {
-    console.log("ACESSEI O POSTS MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar():", idAviso);
+    console.log("ACESSEI O POSTS MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar():", idPost);
     var instrucaoSql = `
         DELETE FROM posts WHERE id = ${idPost};
     `;
