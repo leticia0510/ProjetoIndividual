@@ -6,15 +6,20 @@
     padding: 0;
     border: 0;
     box-sizing: border-box;
-  }
+}
 
 a {
     text-decoration: none;
 }
 
 .container {
-    margin: 0 80px;
+    margin: 0 96px;
 }
+
+h2 {
+    font: 400 3.3vh 'Della Respira';
+}
+
 /* PRINCIPAL */
 /* CABEÇALHO */
 header {
@@ -22,6 +27,9 @@ header {
     width: 100%;
     background-color: #fff;
     padding: 10px 0;
+    box-shadow: 0px 2px 9px -1px rgba(117,117,117,0.30);
+    -webkit-box-shadow: 0px 2px 9px -1px rgba(117,117,117,0.30);
+    -moz-box-shadow: 0px 2px 9px -1px rgba(117,117,117,0.30);
 }
 
 header .container {
@@ -63,18 +71,49 @@ main {
     background-size: cover;
     background-repeat: no-repeat;
     height: 700px;
-    margin: 0 40px;
+    margin: 0 80px;
     border-radius: 40px;
 }
+
 /* FIM DO BANNER */
+
+/* SOBRE NÓS */
+#sobreNos {
+    margin-top: 100px;
+}
+
+#sobreNos .container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.textoSobreNos p {
+    font: 400 2vh "Work Sans", sans-serif;
+    text-align: justify;
+    margin-top: 20px;
+}
+
+.imgSobreNos img {
+    width: 800px;
+    border-radius: 40px;
+}
+
+.textoSobreNos {
+    text-align: center;
+    width: 720px;
+}
+
+/* FIM SOBRE NÓS */
+
 /* PERSONAGENS */
-#Personagens {
+#personagens {
     margin-top: 100px;
 }
 
 .cardsPersonagens {
     display: flex;
     justify-content: space-between;
+    margin-top: 40px;
 }
 
 .card {
@@ -86,52 +125,25 @@ main {
 
 /* FIM PERSONAGENS */
 
-/* FIM DO PRINCIPAL */
-
 /* JOGOS */
-.bannerJogo{
-    width: 100%;
-    height: 40vh;
+#jogos {
     background-color: #04B2D9;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: 600px;
+    margin-top: 100px;
 }
 
-.jogosDisponiveis {
-    margin-top: 70px;
+/* FIM JOGOS */
+
+/* DESCUBRA */
+#descubra {
+    margin-top: 100px;
 }
 
-.informacaoJogo {
-    margin: 40px 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
-
-.cardJogo {
-    width: 350px;
-    height: 200px;
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: black;
-}
-
-.jogo2 {
-    order: 1;
-}
-
-.descricaoJogo {
-    width: 700px;
-}
-
-footer {
-    background-color: #f2ab27;
-}
-
-footer .container {
+#descubra .container {
     text-align: center;
-    padding: 50px;
 }
+
+/* FIM DESCUBRA */
+
+
+/* FIM DO PRINCIPAL */
