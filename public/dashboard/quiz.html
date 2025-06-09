@@ -82,7 +82,7 @@
     let erradas = 0
     let tentativaIncorreta = 0;
     let numeroDaQuestaoAtual = 0;
-
+    let quantidadeDeQuestoes = 0;
 
 
     function listarPerguntas() {
@@ -100,26 +100,12 @@
 
                         listaDeQuestoes.push(perguntas);
                     }
-                    let quantidadeDeQuestoes = listaDeQuestoes.length;
+                    quantidadeDeQuestoes += listaDeQuestoes.length;
                     console.log(quantidadeDeQuestoes)
 
-                    iniciarQuiz(quantidadeDeQuestoes);
-                    // onloadEsconder();
-                    // preencherHTMLcomQuestaoAtual();
-                    // submeter();
-                    // habilitarAlternativas();
-                    avancar(quantidadeDeQuestoes);
-                    // tentarNovamente();
-                    checarResposta();
-                    // limparCoresBackgroundOpcoes();
-                    // desmarcarRadioButtons();
-                    // finalizarJogo();
-
+                    iniciarQuiz();
                 })
-
             }
-
-
         })
     }
 
@@ -138,14 +124,14 @@
         document.getElementById('jogo').style.display = "none"
     }
 
-    function iniciarQuiz(quantidade) {
+    function iniciarQuiz() {
         console.log(listaDeQuestoes)
 
         document.getElementById('pontuacao').style.display = "flex"
         document.getElementById('jogo').style.display = "flex"
         document.getElementById('btnIniciarQuiz').style.display = "none"
 
-        document.getElementById('qtdQuestoes').innerHTML = quantidade;
+        document.getElementById('qtdQuestoes').innerHTML = quantidadeDeQuestoes;
 
         preencherHTMLcomQuestaoAtual(0)
 
@@ -202,17 +188,17 @@
 
     }
 
-    function avancar(quantidade) {
+    function avancar() {
         
         btnProx.disabled = true
         btnSubmeter.disabled = false
 
         desmarcarRadioButtons()
 
-        if (numeroDaQuestaoAtual <= quantidade - 1) {
+        if (numeroDaQuestaoAtual <= quantidadeDeQuestoes - 1) {
             preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
         } else {
-            finalizarJogo(quantidade)
+            finalizarJogo()
         }
         limparCoresBackgroundOpcoes()
     }
@@ -276,11 +262,11 @@
         }
     }
 
-    function finalizarJogo(quantidade) {
+    function finalizarJogo() {
 
         let textoParaMensagemFinal = null
         let classComCoresParaMensagemFinal = null
-        const porcentagemFinalDeAcertos = pontuacaoFinal / quantidade
+        const porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes;
 
         if (porcentagemFinalDeAcertos <= 0.3) {
             textoParaMensagemFinal = "Parece que você não estudou..."
