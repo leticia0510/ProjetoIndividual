@@ -8,9 +8,9 @@ function buscarPerguntasQuiz1() {
   return database.executar(instrucaoSql);
 }
 
-function cadastrarRespostasQ1(empresaId, descricao) {
+function cadastrarRespostasQ1(acerto, fkquestao, fkusuario) {
   
-  var instrucaoSql = `INSERT INTO respostasQ1 VALUES (${descricao}, ${empresaId})`;
+  var instrucaoSql = `INSERT INTO respostasQ1 (acerto, fkquestao, fkusuario) VALUES (${acerto}, ${fkquestao}, ${fkusuario});`;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);

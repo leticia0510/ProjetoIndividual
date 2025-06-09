@@ -16,25 +16,28 @@ function buscarPerguntasQuiz1(req, res) {
 }
 
 
-function cadastrar(req, res) {
-  var descricao = req.body.descricao;
-  var idUsuario = req.body.idUsuario;
+function cadastrarRespostasQ1(req, res) {
+  var acerto = req.body.acertoServer;
+  var fkquestao = req.body.fkquestaoServer;
+  var fkusuario = req.body.fkusuarioServer;
 
-  if (descricao == undefined) {
-    res.status(400).send("descricao está undefined!");
-  } else if (idUsuario == undefined) {
-    res.status(400).send("idUsuario está undefined!");
+  if (acerto == undefined) {
+    res.status(400).send("acerto está undefined!");
+  } else if (fkquestao == undefined) {
+    res.status(400).send("fkquestao está undefined!");
+  } else if (fkusuario == undefined) {
+    res.status(400).send("fkusuario está undefined!");
   } else {
 
 
-    aquarioModel.cadastrar(descricao, idUsuario)
+    quizModel.cadastrarRespostasQ1(acerto, fkquestao, fkusuario)
       .then((resultado) => {
-        res.status(201).json(resultado);
+        res.json(resultado);
       }
       ).catch((erro) => {
         console.log(erro);
         console.log(
-          "\nHouve um erro ao realizar o cadastro! Erro: ",
+          "\nHouve um erro ao realizar o cadastro das respostas! Erro: ",
           erro.sqlMessage
         );
         res.status(500).json(erro.sqlMessage);
@@ -44,5 +47,5 @@ function cadastrar(req, res) {
 
 module.exports = {
   buscarPerguntasQuiz1,
-  cadastrar
+  cadastrarRespostasQ1
 }

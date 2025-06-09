@@ -7,8 +7,8 @@ router.get("/quiz1", function (req, res) {
   quizController.buscarPerguntasQuiz1(req, res);
 });
 
-router.post("/cadastrar", function (req, res) {
-  aquarioController.cadastrar(req, res);
+router.post("/respostas", function (req, res) {
+  quizController.cadastrarRespostasQ1(req, res);
 })
 
 module.exports = router;
