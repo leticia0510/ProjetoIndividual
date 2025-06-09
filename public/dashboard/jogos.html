@@ -6,67 +6,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jogos</title>
     <link rel="icon" href="./assets/icon/favicon2.png">
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="../styles/dashboards.css">
 </head>
 
 <body>
-    <header>
-        <div class="container">
-            <div class="logo">
-                <a href="index.html"><img src="assets/imgs/logo.png" alt="logo hora de aventura"></a>
+    <div class="janela">
+        <div class="header-left">
+            <div class="fotoPerfil">
+                <img src="../assets/imgs/iconJake.jpg" alt="">
             </div>
-            <nav class="navbar">
-                <a href="index.html">Home</a>
-                <a href="sobreNos.html">Sobre Nós</a>
-                <a class="agora" href="jogos.html">Jogos</a>
-                <a href="descubra.html">Descubra</a>
-                <a href="login.html">Login</a>
-            </nav>
-        </div>
-    </header>
-    <main>
-        <section>
-            <div class="bannerJogo">
-                <h1>Jogos</h1>
+            <div class="hello">
+                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
             </div>
-        </section>
-        <section>
-            <div class="container">
-                <div class="jogosDisponiveis">
-                    <div class="informacaoJogo">
-                        <div class="cardJogo">
-                            <h4>Descubra o número</h4>
-                        </div>
-                        <div class="descricaoJogo">
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita eos voluptates corporis beatae, itaque temporibus quidem ab libero at, reiciendis officiis quasi eligendi optio velit officia quo suscipit commodi distinctio?</p>
-                        </div>
-                    </div>
-                    <div class="informacaoJogo jogo2">
-                        <div class="cardJogo jogo2">
-                            <h4>Quiz</h4>
-                        </div>
-                        <div class="descricaoJogo">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet quia sapiente nostrum veniam porro nam, at beatae ut facilis adipisci magnam distinctio labore dolorem quo? Eos facere tempore suscipit eaque.</p>
-                        </div>
-                    </div>
-                    <div class="informacaoJogo">
-                        <div class="cardJogo">
-                            <h4>Cruzadinha</h4>
-                        </div>
-                        <div class="descricaoJogo">
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ut ratione voluptatibus repellendus. In nesciunt rem aliquid consequuntur adipisci laboriosam repudiandae temporibus asperiores aperiam beatae enim earum quas dolore, nostrum autem.</p>
-                        </div>
-                    </div>
+            <div class="btn-nav-white">
+                <a href="./cards.html">
+                    <h3>Perfil</h3>
+                </a>
+            </div>
+            <div class="btn-nav-white">
+                <a href="./jogos.html">
+                    <h3>Jogos</h3>
+                </a>
+            </div>
+            <div class="btn-nav">
+                <h3>Dashboard</h3>
+            </div>
+            <div class="btn-nav-white">
+                <a href="./mural.html">
+                    <h3>Posts</h3>
+                </a>
+            </div>
+            <div class="btn-logout">
+                <h3>Sair</h3>
+            </div>
 
-                </div>
+        </div>
+
+        <div class="dash-right">
+
+            <div class="btns-dash" id="btnAquario">
+                <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
             </div>
-        </section>
-    </main>
-    <footer>
-        <div class="container">
-            <p>dknknaskçn kçcaçkkna kjknsvn çkvno kçnjnç kdvvan jnonkk mcvkn</p>
-        </div>   
-    </footer>
+            <div id="graficos">
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
