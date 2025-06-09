@@ -73,44 +73,64 @@
 
 </html>
 <script>
-    const listaDeQuestoes = [
 
-        {
-            pergunta: "Qual mês tem 30 dias?",
-            alternativaA: "Janeiro",
-            alternativaB: "Dezembro",
-            alternativaC: "Junho",
-            alternativaD: "Agosto",
-            alternativaCorreta: "alternativaC"
-        },
+    window.onload = listarPerguntas();
+    const listaDeQuestoes = [];
 
-        {
-            pergunta: "Quantas horas tem em um dia?",
-            alternativaA: "30 horas",
-            alternativaB: "38 horas",
-            alternativaC: "48 horas",
-            alternativaD: "24 horas",
-            alternativaCorreta: "alternativaD"
-        },
+    let certas = 0
+    let pontuacaoFinal = 0
+    let erradas = 0
+    let tentativaIncorreta = 0;
+    let numeroDaQuestaoAtual = 0;
 
-        {
-            pergunta: "Qual destes números é ímpar?",
-            alternativaA: "Dez",
-            alternativaB: "Doze",
-            alternativaC: "Oito",
-            alternativaD: "Onze",
-            alternativaCorreta: "alternativaD"
-        }
 
-    ]
+
+    function listarPerguntas() {
+
+        fetch("/quiz/quiz1").then(function (resposta) {
+
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+
+                    console.log(resposta)
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                    for (let i = 0; i < resposta.length; i++) {
+                        var perguntas = resposta[i];
+
+                        listaDeQuestoes.push(perguntas);
+                    }
+                    let quantidadeDeQuestoes = listaDeQuestoes.length;
+                    console.log(quantidadeDeQuestoes)
+
+                    iniciarQuiz(quantidadeDeQuestoes);
+                    // onloadEsconder();
+                    // preencherHTMLcomQuestaoAtual();
+                    // submeter();
+                    // habilitarAlternativas();
+                    avancar(quantidadeDeQuestoes);
+                    // tentarNovamente();
+                    checarResposta();
+                    // limparCoresBackgroundOpcoes();
+                    // desmarcarRadioButtons();
+                    // finalizarJogo();
+
+                })
+
+            }
+
+
+        })
+    }
+
 
     // variáveis globais    
-    let numeroDaQuestaoAtual = 0
-    let pontuacaoFinal = 0
-    let tentativaIncorreta = 0
-    let certas = 0
-    let erradas = 0
-    let quantidadeDeQuestoes = listaDeQuestoes.length
+    // let numeroDaQuestaoAtual = 0
+    // let pontuacaoFinal = 0
+    // let tentativaIncorreta = 0
+    // let certas = 0
+    // let erradas = 0
+    // let quantidadeDeQuestoes = listaDeQuestoes.length
     // let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
 
     function onloadEsconder() {
@@ -118,12 +138,14 @@
         document.getElementById('jogo').style.display = "none"
     }
 
-    function iniciarQuiz() {
+    function iniciarQuiz(quantidade) {
+        console.log(listaDeQuestoes)
+
         document.getElementById('pontuacao').style.display = "flex"
         document.getElementById('jogo').style.display = "flex"
         document.getElementById('btnIniciarQuiz').style.display = "none"
 
-        document.getElementById('qtdQuestoes').innerHTML = quantidadeDeQuestoes
+        document.getElementById('qtdQuestoes').innerHTML = quantidade;
 
         preencherHTMLcomQuestaoAtual(0)
 
@@ -180,16 +202,17 @@
 
     }
 
-    function avancar() {
+    function avancar(quantidade) {
+        
         btnProx.disabled = true
         btnSubmeter.disabled = false
 
         desmarcarRadioButtons()
 
-        if (numeroDaQuestaoAtual <= quantidadeDeQuestoes - 1) {
+        if (numeroDaQuestaoAtual <= quantidade - 1) {
             preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
         } else {
-            finalizarJogo()
+            finalizarJogo(quantidade)
         }
         limparCoresBackgroundOpcoes()
     }
@@ -200,6 +223,7 @@
     }
 
     function checarResposta() {
+
         const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual] // questão atual 
         const respostaQuestaoAtual = questaoAtual.alternativaCorreta // qual é a resposta correta da questão atual
 
@@ -236,6 +260,7 @@
     }
 
     function limparCoresBackgroundOpcoes() {
+
         const options = document.getElementsByName("option");
         options.forEach((option) => {
             document.getElementById(option.labels[0].id).classList.remove("text-danger-with-bg")
@@ -244,16 +269,18 @@
     }
 
     function desmarcarRadioButtons() {
+
         const options = document.getElementsByName("option");
         for (let i = 0; i < options.length; i++) {
             options[i].checked = false;
         }
     }
 
-    function finalizarJogo() {
+    function finalizarJogo(quantidade) {
+
         let textoParaMensagemFinal = null
         let classComCoresParaMensagemFinal = null
-        const porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes
+        const porcentagemFinalDeAcertos = pontuacaoFinal / quantidade
 
         if (porcentagemFinalDeAcertos <= 0.3) {
             textoParaMensagemFinal = "Parece que você não estudou..."
@@ -268,14 +295,14 @@
             classComCoresParaMensagemFinal = "text-success-with-bg"
         }
 
-        textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos)*100) + "% das questões."
+        textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos) * 100) + "% das questões."
 
 
         document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal
-        document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal) 
+        document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal)
         document.getElementById('spanPontuacaoFinal').innerHTML = pontuacaoFinal
 
-        document.getElementById('jogo').classList.add("text-new-gray") 
+        document.getElementById('jogo').classList.add("text-new-gray")
 
         btnProx.disabled = true
         btnSubmeter.disabled = true

@@ -1,10 +1,10 @@
 var express = require("express");
 var router = express.Router();
 
-var aquarioController = require("../controllers/aquarioController");
+var quizController = require("../controllers/quizController");
 
-router.get("/:empresaId", function (req, res) {
-  aquarioController.buscarAquariosPorEmpresa(req, res);
+router.get("/quiz1", function (req, res) {
+  quizController.buscarPerguntasQuiz1(req, res);
 });
 
 router.post("/cadastrar", function (req, res) {

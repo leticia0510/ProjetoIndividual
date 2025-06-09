@@ -1,9 +1,8 @@
-var aquarioModel = require("../models/aquarioModel");
+var quizModel = require("../models/quizModel");
 
-function buscarAquariosPorEmpresa(req, res) {
-  var idUsuario = req.params.idUsuario;
+function buscarPerguntasQuiz1(req, res) {
 
-  aquarioModel.buscarAquariosPorEmpresa(idUsuario).then((resultado) => {
+  quizModel.buscarPerguntasQuiz1().then((resultado) => {
     if (resultado.length > 0) {
       res.status(200).json(resultado);
     } else {
@@ -11,7 +10,7 @@ function buscarAquariosPorEmpresa(req, res) {
     }
   }).catch(function (erro) {
     console.log(erro);
-    console.log("Houve um erro ao buscar os aquarios: ", erro.sqlMessage);
+    console.log("Houve um erro ao buscar os quiz: ", erro.sqlMessage);
     res.status(500).json(erro.sqlMessage);
   });
 }
@@ -44,6 +43,6 @@ function cadastrar(req, res) {
 }
 
 module.exports = {
-  buscarAquariosPorEmpresa,
+  buscarPerguntasQuiz1,
   cadastrar
 }

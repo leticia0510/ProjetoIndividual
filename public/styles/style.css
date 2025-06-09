@@ -27,9 +27,9 @@ header {
     width: 100%;
     background-color: #fff;
     padding: 10px 0;
-    box-shadow: 0px 2px 9px -1px rgba(117,117,117,0.30);
-    -webkit-box-shadow: 0px 2px 9px -1px rgba(117,117,117,0.30);
-    -moz-box-shadow: 0px 2px 9px -1px rgba(117,117,117,0.30);
+    box-shadow: 0px 2px 9px -1px rgba(117, 117, 117, 0.30);
+    -webkit-box-shadow: 0px 2px 9px -1px rgba(117, 117, 117, 0.30);
+    -moz-box-shadow: 0px 2px 9px -1px rgba(117, 117, 117, 0.30);
 }
 
 header .container {
@@ -70,16 +70,58 @@ main {
     background: url(../assets/imgs/banner.png) center;
     background-size: cover;
     background-repeat: no-repeat;
-    height: 700px;
-    margin: 0 80px;
+    height: 800px;
+    margin: 0 40px;
     border-radius: 40px;
 }
 
 /* FIM DO BANNER */
+/* FRASE */
+#frase {
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+    text-align: center;
+}
 
+.bracoUm,
+.bracoDois {
+    height: 5px;
+    width: 1000px;
+    background-color: #f2ab27;
+}
+
+.fotoJake {
+    background-color: #fff;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fotoJake img {
+    width: 50px;
+    border-radius: 50px;
+}
+
+.bracoDois {
+    align-self: flex-end;
+}
+
+#frase p {
+    padding: 10px 450px;
+    font: 300 2.3vh "Work Sans", sans-serif;
+}
+
+#frase h3 {
+    font: 400 2vh 'Della Respira';
+}
+
+/* FIM DE FRASE */
 /* SOBRE NÓS */
 #sobreNos {
     margin-top: 100px;
+    background-color: #FFCAFB;
 }
 
 #sobreNos .container {
