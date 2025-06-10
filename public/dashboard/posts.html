@@ -52,7 +52,7 @@
                     </a>
                 </div>
             </div>
-            <div class="btn-logout">
+            <div class="btn-logout" onclick="limparSessao()">
                 <!-- <i class="fa-solid fa-door-open"></i> -->
                 <i class="fa-solid fa-person-through-window"></i>
             </div>
@@ -61,12 +61,11 @@
 
         <div class="dash-right">
 
-
             <div class="avisos">
                 <div id="alerta">
                 </div>
                 <div class="container">
-                    <h1>Publicar um aviso</h1>
+                    <h1>Publicar um Post</h1>
                     <div class="div-form">
                         <form id="form_postagem" method="post" onsubmit="return publicar()">
                             <label>
@@ -82,26 +81,40 @@
                             <button>Enviar</button>
                         </form>
                     </div>
-                    <h1>Mural de Avisos</h1>
                     <div class="div-results">
                         <div id="feed_container" class="feed-container">
                         </div>
                     </div>
+                    <!-- <div class="div_posts">
+                        <div class="infoPosts">
+                            <div class="usuario">
+                                <div class="img-usuario">
+                                    <img src="./../assets/imgs/iconJake.jpg" alt="">
+                                </div>
+                                <p>Jake</p>
+                            </div>
+                            <div class="horario">20/05/2025</div>
+                        </div>
+                        <div class="descricaoPost">
+                            <div class="foto-post">
+                                <img src="./../assets/imgs/iconJake.jpg" alt="">
+                            </div>
+                            <div class="post-texto">
+                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas vitae quo ullam totam voluptatum magnam officia sequi consectetur sint non dolore minus enim autem eos aut, velit expedita ab soluta. Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus molestiae inventore aliquid esse ea optio deleniti aut at, excepturi repellat. Et, fuga? Dignissimos ipsa quo voluptatum esse laborum sint cupiditate!</p>
+                            </div>
+                        </div>
+                    </div> -->
                 </div>
             </div>
         </div>
     </div>
-
-
-
-
 </body>
 
 </html>
 
 <script>
 
-    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    b_usuario.innerHTML = sessionStorage.NICKNAME_USUARIO;
 
     function limparFormulario() {
         document.getElementById("form_postagem").reset();
@@ -127,7 +140,7 @@
 
             if (resposta.ok) {
                 window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
-                window.location = "/dashboard/mural.html";
+                window.location = "/dashboard/posts.html";
                 limparFormulario();
                 finalizarAguardar();
             } else if (resposta.status == 404) {
@@ -163,7 +176,7 @@
 
             if (resposta.ok) {
                 window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
-                window.location = "/dashboard/mural.html"
+                window.location = "/dashboard/posts.html"
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {
@@ -194,47 +207,66 @@
                         var publicacao = resposta[i];
 
                         // criando e manipulando elementos do HTML via JavaScript
-                        var divPublicacao = document.createElement("div");
-                        var spanID = document.createElement("span");
-                        var spanTitulo = document.createElement("span");
-                        var spanNome = document.createElement("span");
-                        var divDescricao = document.createElement("div");
-                        var divButtons = document.createElement("div");
-                        var btnEditar = document.createElement("button");
-                        var btnDeletar = document.createElement("button");
+                        var divPost = document.createElement("div");
+                        // var spanID = document.createElement("span");
+                        // var spanTitulo = document.createElement("span");
+                        // var spanNome = document.createElement("span");
+                        // var divDescricao = document.createElement("div");
+                        // var divButtons = document.createElement("div");
+                        // var btnEditar = document.createElement("button");
+                        // var btnDeletar = document.createElement("button");
 
+                        divPost.innerHTML = `
+                            <div class="infoPosts">
+                                <div class="usuario">
+                                    <div class="img-usuario">
+                                        <img src="./../assets/imgs/iconJake.jpg" alt="">
+                                    </div>
+                                    <p>Jake</p>
+                                </div>
+                                <div class="data-post">${publicacao.publicado}</div>
+                            </div>
+                            <div class="descricaoPost">
+                                <div class="foto-post">
+                                    <img src="./../assets/imgs/iconJake.jpg" alt="">
+                                </div>
+                                <div class="post-texto">
+                                    <p>${publicacao.texto}</p>
+                                </div>
+                            </div>
+                        `;
+                        divPost.className = "div_posts";
+                        // spanID.innerHTML = "ID: <b>" + publicacao.idPost + "</b>";
+                        // spanTitulo.innerHTML = "Título: <b>" + publicacao.fotoPost + "</b>";
+                        // spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>";
+                        // divDescricao.innerHTML = "Descrição: <b>" + publicacao.texto + "</b>";
+                        // btnEditar.innerHTML = "Editar";
+                        // btnDeletar.innerHTML = "Deletar";
 
-                        spanID.innerHTML = "ID: <b>" + publicacao.idPost + "</b>";
-                        spanTitulo.innerHTML = "Título: <b>" + publicacao.fotoPost + "</b>";
-                        spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>";
-                        divDescricao.innerHTML = "Descrição: <b>" + publicacao.texto + "</b>";
-                        btnEditar.innerHTML = "Editar";
-                        btnDeletar.innerHTML = "Deletar";
+                        // divPublicacao.className = "publicacao";
+                        // spanTitulo.id = "inputNumero" + publicacao.idPost;
+                        // spanNome.className = "publicacao-nome";
+                        // spanTitulo.className = "publicacao-titulo";
+                        // divDescricao.className = "publicacao-descricao";
 
-                        divPublicacao.className = "publicacao";
-                        spanTitulo.id = "inputNumero" + publicacao.idPost;
-                        spanNome.className = "publicacao-nome";
-                        spanTitulo.className = "publicacao-titulo";
-                        divDescricao.className = "publicacao-descricao";
+                        // divButtons.className = "div-buttons"
 
-                        divButtons.className = "div-buttons"
+                        // btnEditar.className = "publicacao-btn-editar"
+                        // btnEditar.id = "btnEditar" + publicacao.idPost;
+                        // btnEditar.setAttribute("onclick", `editar(${publicacao.idPost})`);
 
-                        btnEditar.className = "publicacao-btn-editar"
-                        btnEditar.id = "btnEditar" + publicacao.idPost;
-                        btnEditar.setAttribute("onclick", `editar(${publicacao.idPost})`);
+                        // btnDeletar.className = "publicacao-btn-editar"
+                        // btnDeletar.id = "btnDeletar" + publicacao.idPost;
+                        // btnDeletar.setAttribute("onclick", `deletar(${publicacao.idPost})`);
 
-                        btnDeletar.className = "publicacao-btn-editar"
-                        btnDeletar.id = "btnDeletar" + publicacao.idPost;
-                        btnDeletar.setAttribute("onclick", `deletar(${publicacao.idPost})`);
-
-                        divPublicacao.appendChild(spanID);
-                        divPublicacao.appendChild(spanNome);
-                        divPublicacao.appendChild(spanTitulo);
-                        divPublicacao.appendChild(divDescricao);
-                        divPublicacao.appendChild(divButtons);
-                        divButtons.appendChild(btnEditar);
-                        divButtons.appendChild(btnDeletar);
-                        feed.appendChild(divPublicacao);
+                        // divPublicacao.appendChild(spanID);
+                        // divPublicacao.appendChild(spanNome);
+                        // divPublicacao.appendChild(spanTitulo);
+                        // divPublicacao.appendChild(divDescricao);
+                        // divPublicacao.appendChild(divButtons);
+                        // divButtons.appendChild(btnEditar);
+                        // divButtons.appendChild(btnDeletar);
+                        feed.appendChild(divPost);
                     }
 
                     finalizarAguardar();

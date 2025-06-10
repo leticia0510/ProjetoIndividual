@@ -7,6 +7,7 @@ function listar() {
             p.id AS idPost,
             p.texto,
             p.fotoPost,
+            date_format(p.publicado, '%d/%m/%Y') AS publicado,
             p.fkUsuario,
             u.id AS idUsuario,
             u.nome,
