@@ -122,11 +122,13 @@ main {
 #sobreNos {
     margin-top: 100px;
     background-color: #FFCAFB;
+    padding: 100px 0;
 }
 
 #sobreNos .container {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .textoSobreNos p {
@@ -161,7 +163,7 @@ main {
 .card {
     width: 280px;
     height: 400px;
-    background-color: #04B2D9;
+    background-color: #009DDC;
     border-radius: 40px;
 }
 
@@ -169,7 +171,7 @@ main {
 
 /* JOGOS */
 #jogos {
-    background-color: #04B2D9;
+    background-color: #009DDC;
     height: 600px;
     margin-top: 100px;
 }

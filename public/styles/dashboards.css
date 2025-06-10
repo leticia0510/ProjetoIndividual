@@ -17,7 +17,7 @@ button {
 }
 
 body {
-  font: 400 16px 'Work Sans', sans-serif;
+  font-family: 'Work Sans', sans-serif;
 }
 
 /* COMEÇO MENU LATERAL */
@@ -30,30 +30,38 @@ body {
   position: fixed;
   left: 0;
   z-index: 999;
-  height: 90vh;
-  width: 10%;
+  height: 95vh;
+  width: 8%;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
   align-self: center;
+  justify-content: space-between;
   align-items: center;
-  background-color: #04B2D9;
-  border-radius: 160px;
-  margin-left: 50px;
+  background-color: rgb(0, 157, 220, 0.75);
+  border-radius: 40px;
+  margin-left: 30px;
+}
+
+.infoPerfil {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .fotoPerfil {
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   border-radius: 50px;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 3px solid #010440;
+  margin-top: 60px;
 }
 
 .fotoPerfil img {
-  width: 100px;
+  width: 90px;
 }
 
 .header-left h1 {
@@ -67,7 +75,7 @@ body {
 }
 
 .hello h3 {
-  color: #e3b062;
+  color: #F2F2F2;
   font-weight: 300;
   font-size: 1.2rem;
 }
@@ -76,43 +84,41 @@ body {
   font-weight: 800;
 }
 
+.nav_dash {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 100px;
+}
+
 .btn-nav {
   color: white;
-  background-color: #e6005a;
+  background-color: rgba(242, 242, 242, 0.4);
+  padding: 5px;
   border-radius: 5px;
   text-align: center;
-  padding: 2% 5%;
 }
 
 .btn-nav-white {
-  background-color: white;
-  border: 3px solid #e6005a;
   border-radius: 5px;
   text-align: center;
-  padding: 2% 5%;
 }
 
 .btn-nav-white h3 {
-  color: #e6005a;
-  padding: 0;
-  margin: 0;
+  color: white;
 }
 
-.btn-nav h3,
-.btn-logout h3 {
-  margin: 0;
-  padding: 0;
+.nav_dash i {
+  font-size: 36px;
+  color: #F2F2F2;
 }
 
 .btn-logout {
-  margin: 0;
-  padding: 0;
-  background-color: #32b9cd;
-  color: white;
+  color:  #F2F2F2;
+  font-size: 32px;
   border-radius: 10px;
   text-align: center;
   padding: 10px 15px;
-  margin-bottom: 100px;
+  margin-bottom: 60px;
   cursor: pointer;
 }
 
@@ -183,7 +189,6 @@ body {
 
 .publicacao-btn-editar {
   cursor: pointer;
-  font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   border: 0;
   border-radius: 5px;
   font-weight: 600;
@@ -392,7 +397,6 @@ body {
 }
 
 .btn-chart {
-  font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   border: 0;
   font-weight: 600;
   font-size: 18px;
