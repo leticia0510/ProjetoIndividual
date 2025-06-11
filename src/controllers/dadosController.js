@@ -19,9 +19,7 @@ function buscarAlternativasMaisSelecionadas(req, res) {
 
 function buscarAcertosErros(req, res) {
 
-    var idQuestao = req.params.idQuestao;
-
-    dadosModel.buscarAcertosErros(idQuestao).then(function (resultado) {
+    dadosModel.buscarAcertosErros().then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {

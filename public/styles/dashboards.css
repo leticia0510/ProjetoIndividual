@@ -16,6 +16,11 @@ button {
   cursor: pointer;
 }
 
+h1 {
+  font-family: 'Della Respira', serif;
+  font-size: 36px;
+}
+
 body {
   font-family: 'Work Sans', sans-serif;
   background-color: #F1F3F4;
@@ -290,12 +295,12 @@ body {
 
 
 .dash {
-  width: 80%;
+  width: 86%;
+  height: fit-content;
   position: relative;
-  top: 0;
-  left: 20%;
+  top: 60px;
+  left: 14%;
   height: 100vh;
-  overflow: auto;
 }
 
 .area-parametros-alerta {
@@ -335,26 +340,6 @@ body {
 
 .item-regua p:nth-child(2) {
   font-weight: 800;
-}
-
-.perigo-frio {
-  background-color: #5c6bc0;
-}
-
-.perigo-quente {
-  background-color: #ff7043;
-}
-
-.alerta-frio {
-  background-color: #42a5f5;
-}
-
-.alerta-quente {
-  background-color: #ffee58;
-}
-
-.ideal {
-  background-color: #9ccc65;
 }
 
 .cards {
@@ -430,32 +415,32 @@ body {
 }
 
 .btns-dash {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin-top: 30px;
-  flex-wrap: wrap;
-  padding: 0 30% 0 30%;
 }
 
 .graph {
-  width: 70%;
-  margin: auto;
   padding-top: 10px;
 }
 
 .tituloGraficos {
-  color: rgb(216, 216, 216);
-  display: flex;
-  justify-content: center;
+  color: #04B2D9;
+}
+
+.dashboardUm {
+  text-align: center;
+  width: 40%;
+}
+
+.dashboardDois {
+  text-align: center;
+  width: 60%;
 }
 
 .btn-chart {
-  border: 0;
   font-weight: 600;
+  border: 1px solid #f2ab27;
   font-size: 18px;
   padding: 10px 15px;
-  color: #e6005a;
   background-color: white;
   margin: 5px;
   border-radius: 3px;

@@ -3,7 +3,7 @@ var router = express.Router();
 
 var dadosController = require("../controllers/dadosController");
 
-router.get("/errosAcertos/:idQuestao", function (req, res) {
+router.get("/errosAcertos", function (req, res) {
     dadosController.buscarAcertosErros(req, res);
 });
 

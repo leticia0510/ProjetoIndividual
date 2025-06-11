@@ -9,7 +9,7 @@ function buscarAlternativasMaisSelecionadas(idQuestao) {
             INNER JOIN quiz1 q1 ON r1.fkquestao = q1.id
             WHERE r1.fkquestao = ${idQuestao}
             GROUP BY q1.pergunta, r1.opcaoSele
-            ORDER BY alternativa;`;
+            ORDER BY opcaoSele;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -18,10 +18,13 @@ function buscarAlternativasMaisSelecionadas(idQuestao) {
 function buscarAcertosErros() {
 
     var instrucaoSql = `
-        SELECT SUM(acerto) AS acerto, 
-                count(pergunta) - SUM(acerto) AS erros 
+        SELECT q1.pergunta, 
+                r1.fkquestao,
+                SUM(r1.acerto) AS acertos,
+                count(q1.pergunta) - SUM(r1.acerto) AS erros 
         FROM respostasQ1 r1
-            INNER JOIN quiz1 q1 ON r1.fkquestao = q1.id;`;
+            INNER JOIN quiz1 q1 ON r1.fkquestao = q1.id
+            GROUP BY q1.pergunta, r1.fkquestao;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
