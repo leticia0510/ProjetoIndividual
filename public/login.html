@@ -85,6 +85,16 @@
             setInterval(sumirMensagem, 5000)
         }
 
+        fetch("/quiz/quiz1").then(function (resposta) {
+
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+
+                    sessionStorage.QUESTAO = JSON.stringify(resposta)   
+                })
+            }
+        })
+
         console.log("FORM LOGIN: ", emailVar);
         console.log("FORM SENHA: ", senhaVar);
 

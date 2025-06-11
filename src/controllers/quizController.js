@@ -20,6 +20,7 @@ function cadastrarRespostasQ1(req, res) {
   var acerto = req.body.acertoServer;
   var fkquestao = req.body.fkquestaoServer;
   var fkusuario = req.body.fkusuarioServer;
+  var opcaoSele = req.body.opcaoSeleServer;
 
   if (acerto == undefined) {
     res.status(400).send("acerto está undefined!");
@@ -27,10 +28,12 @@ function cadastrarRespostasQ1(req, res) {
     res.status(400).send("fkquestao está undefined!");
   } else if (fkusuario == undefined) {
     res.status(400).send("fkusuario está undefined!");
+  } else if (opcaoSele == undefined) {
+    res.status(400).send("fkusuario está undefined!");
   } else {
 
 
-    quizModel.cadastrarRespostasQ1(acerto, fkquestao, fkusuario)
+    quizModel.cadastrarRespostasQ1(acerto, opcaoSele, fkquestao, fkusuario)
       .then((resultado) => {
         res.json(resultado);
       }

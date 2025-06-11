@@ -10,7 +10,6 @@
 
 
     <link rel="stylesheet" href="./../styles/dashboards.css">
-    <link rel="stylesheet" href="./../styles/estilo.css" />
     <script src="../js/sessao.js"></script>
     <script src="./../js/alerta.js"></script>
 
@@ -66,6 +65,12 @@
             </div>
 
             <div class="btns-dash" id="btnAquario">
+                <div id="questaoGeral">
+                    <select id="select_questao" class="btn-chart"
+                        onchange="exibirQuestao(this.options[this.selectedIndex].value)">
+
+                    </select>
+                </div>
                 <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
             </div>
             <div id="graficos">
@@ -84,25 +89,25 @@
 
     let proximaAtualizacao;
 
-    window.onload = exibirAquariosDoUsuario();
+    window.onload = exibirTodasAsQuestoes();
 
-    function exibirAquariosDoUsuario() {
-        var aquarios = JSON.parse();
-        aquarios.forEach(item => {
-            document.getElementById("btnAquario").innerHTML += `
-            <button class="btn-chart" onclick="exibirAquario(${item.id})" id="btnAquario${item.id}">${item.descricao}</button>
-            `
+    function exibirTodasAsQuestoes() {
+        var questaoSele = JSON.parse(sessionStorage.QUESTAO);
 
+        questaoSele.forEach(item => {
+            document.getElementById("select_questao").innerHTML += `
+              <option id="${item.id}" value="${item.id}">${item.id}</option>
+              `
             document.getElementById("graficos").innerHTML += `
                 <div id="grafico${item.id}" class="display-none">
                     <h3 class="tituloGraficos">
-                        <span id="tituloAquario${item.id}">${item.descricao}</span>
+                        <span id="tituloQuestao${item.id}">${item.pergunta}</span>
                     </h3>
                     <div class="graph">
                         <canvas id="myChartCanvas${item.id}"></canvas>
                     </div>
                     <div class="label-captura">
-                        <p id="avisoCaptura${item.id}" style="color: white"></p>
+                        <p id="avisoCaptura${item.id}" style="color: white;"></p>
                     </div>
                 </div>
             `
@@ -110,23 +115,25 @@
             obterDadosGrafico(item.id)
         });
 
-        if (aquarios.length > 0) {
-            exibirAquario(aquarios[0].id)
+        console.log(questaoSele);
+
+        if (questaoSele.length > 0) {
+            exibirQuestao(questaoSele[0].id)
         }
     }
 
-    function alterarTitulo(idAquario) {
-        var tituloAquario = document.getElementById(`tituloAquario${idAquario}`)
-        var descricao = JSON.parse(sessionStorage.AQUARIOS).find(item => item.id == idAquario).descricao;
-        tituloAquario.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>" + descricao + "</span>"
-    }
+    // function alterarTitulo(idAquario) {
+    //     var tituloAquario = document.getElementById(`tituloAquario${idAquario}`)
+    //     var descricao = JSON.parse(sessionStorage.AQUARIOS).find(item => item.id == idAquario).descricao;
+    //     tituloAquario.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>" + descricao + "</span>"
+    // }
 
-    function exibirAquario(idAquario) {
-        let todosOsGraficos = JSON.parse(sessionStorage.AQUARIOS);
+    function exibirQuestao(idQuestao) {
+        let todosOsGraficos = JSON.parse(sessionStorage.QUESTAO);
 
         for (i = 0; i < todosOsGraficos.length; i++) {
             // exibindo - ou não - o gráfico
-            if (todosOsGraficos[i].id != idAquario) {
+            if (todosOsGraficos[i].id != idQuestao) {
                 let elementoAtual = document.getElementById(`grafico${todosOsGraficos[i].id}`)
                 if (elementoAtual.classList.contains("display-block")) {
                     elementoAtual.classList.remove("display-block")
@@ -134,23 +141,23 @@
                 elementoAtual.classList.add("display-none")
 
                 // alterando estilo do botão
-                let btnAtual = document.getElementById(`btnAquario${todosOsGraficos[i].id}`)
-                if (btnAtual.classList.contains("btn-pink")) {
-                    btnAtual.classList.remove("btn-pink")
-                }
-                btnAtual.classList.add("btn-white")
+                // let btnAtual = document.getElementById(`btnAquario${todosOsGraficos[i].id}`)
+                // if (btnAtual.classList.contains("btn-pink")) {
+                //     btnAtual.classList.remove("btn-pink")
+                // }
+                // btnAtual.classList.add("btn-white")
             }
         }
 
         // exibindo - ou não - o gráfico
-        let graficoExibir = document.getElementById(`grafico${idAquario}`)
+        let graficoExibir = document.getElementById(`grafico${idQuestao}`)
         graficoExibir.classList.remove("display-none")
         graficoExibir.classList.add("display-block")
 
         // alterando estilo do botão
-        let btnExibir = document.getElementById(`btnAquario${idAquario}`)
-        btnExibir.classList.remove("btn-white")
-        btnExibir.classList.add("btn-pink")
+        // let btnExibir = document.getElementById(`btnAquario${idAquario}`)
+        // btnExibir.classList.remove("btn-white")
+        // btnExibir.classList.add("btn-pink")
     }
 
     // O gráfico é construído com três funções:
@@ -164,21 +171,21 @@
 
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
-    function obterDadosGrafico(idAquario) {
+    function obterDadosGrafico(idQuestao) {
 
-        alterarTitulo(idAquario)
+        //alterarTitulo(idQuestao)
 
         if (proximaAtualizacao != undefined) {
             clearTimeout(proximaAtualizacao);
         }
 
-        fetch(`/medidas/ultimas/${idAquario}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/dados/alternativa/${idQuestao}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
 
-                    plotarGrafico(resposta, idAquario);
+                    plotarGrafico(resposta, idQuestao);
 
                 });
             } else {
@@ -193,7 +200,7 @@
     // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
     // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
     // A função *plotarGrafico* também invoca a função *atualizarGrafico*
-    function plotarGrafico(resposta, idAquario) {
+    function plotarGrafico(resposta, idQuestao) {
 
         console.log('iniciando plotagem do gráfico...');
 
@@ -202,20 +209,23 @@
 
         // Criando estrutura para plotar gráfico - dados
         let dados = {
-            labels: labels,
+            labels: [],
             datasets: [{
-                label: 'Umidade',
+                label: 'Opções Selecionadas',
                 data: [],
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
-            },
-            {
-                label: 'Temperatura',
-                data: [],
-                fill: false,
-                borderColor: 'rgb(199, 52, 52)',
-                tension: 0.1
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 205, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)'
+                ],
+                borderColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 159, 64)',
+                    'rgb(255, 205, 86)',
+                    'rgb(75, 192, 192)',
+                ],
+                borderWidth: 1
             }]
         };
 
@@ -226,9 +236,9 @@
         // Inserindo valores recebidos em estrutura para plotar o gráfico
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
-            labels.push(registro.momento_grafico);
-            dados.datasets[0].data.push(registro.umidade);
-            dados.datasets[1].data.push(registro.temperatura);
+            dados.labels.push(registro.opcaoSele);
+            dados.datasets[0].data.push(registro.alternativa);
+            // dados.datasets[1].data.push(registro.erros);
         }
 
         console.log('----------------------------------------------')
@@ -241,17 +251,17 @@
 
         // Criando estrutura para plotar gráfico - config
         const config = {
-            type: 'line',
+            type: 'bar',
             data: dados,
         };
 
         // Adicionando gráfico criado em div na tela
         let myChart = new Chart(
-            document.getElementById(`myChartCanvas${idAquario}`),
+            document.getElementById(`myChartCanvas${idQuestao}`),
             config
         );
 
-        setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+        // setTimeout(() => atualizarGrafico(idQuestao, dados, myChart), 2000);
     }
 
 
@@ -261,7 +271,6 @@
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
     function atualizarGrafico(idAquario, dados, myChart) {
-
 
 
         fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {

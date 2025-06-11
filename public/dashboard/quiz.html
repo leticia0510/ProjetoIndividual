@@ -93,6 +93,8 @@
             if (resposta.ok) {
                 resposta.json().then(function (resposta) {
 
+                    sessionStorage.QUESTAO = JSON.stringify(resposta)
+
                     console.log(resposta)
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
@@ -118,8 +120,9 @@
             },
             body: JSON.stringify({
                 acertoServer: acertoVar,
+                opcaoSeleServer: opcaoSelecionada,
                 fkquestaoServer: fkquestaoVar,
-                fkusuario: fkusuarioVar
+                fkusuario: fkusuarioVar,
             })
         })
     }
@@ -220,6 +223,7 @@
         let fkquestaoVar = numeroDaQuestaoAtual + 1;
         var acertoVar = 0;
         let fkusuarioVar = sessionStorage.ID_USUARIO;
+        let opcaoSelecionada;
         console.log(fkusuarioVar)
 
         console.log(fkquestaoVar);
@@ -244,6 +248,9 @@
                 document.getElementById("spanCertas").innerHTML = certas
                 numeroDaQuestaoAtual++
                 acertoVar = 1;
+                opcaoSelecionada = option.value;
+                console.log('Funcionou :D')
+                console.log(option.value);
             } else if (option.checked && option.value !== respostaQuestaoAtual) {
                 const wrongLabelId = option.labels[0].id
 
@@ -254,6 +261,9 @@
                 document.getElementById("spanErradas").innerHTML = erradas
                 numeroDaQuestaoAtual++
                 acertoVar = 0;
+                opcaoSelecionada = option.value;
+                console.log('Funcionou :D')
+                console.log(option.value);
             }
         })
 
@@ -264,8 +274,9 @@
             },
             body: JSON.stringify({
                 acertoServer: acertoVar,
+                opcaoSeleServer: opcaoSelecionada,
                 fkquestaoServer: fkquestaoVar,
-                fkusuarioServer: fkusuarioVar
+                fkusuarioServer: fkusuarioVar,
             }),
         })
             .then(function (resposta) {

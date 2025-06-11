@@ -1,14 +1,10 @@
 var dadosModel = require("../models/dadosModel");
 
-function buscarUltimasMedidas(req, res) {
+function buscarAlternativasMaisSelecionadas(req, res) {
 
-    const limite_linhas = 7;
+    var idQuestao = req.params.idQuestao;
 
-    var idAquario = req.params.idAquario;
-
-    console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
-
-    dadosModel.buscarUltimasMedidas(idAquario, limite_linhas).then(function (resultado) {
+    dadosModel.buscarAlternativasMaisSelecionadas(idQuestao).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -16,7 +12,24 @@ function buscarUltimasMedidas(req, res) {
         }
     }).catch(function (erro) {
         console.log(erro);
-        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        console.log("Houve um erro ao buscar as alternativas selecionadas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function buscarAcertosErros(req, res) {
+
+    var idQuestao = req.params.idQuestao;
+
+    dadosModel.buscarAcertosErros(idQuestao).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar os acertos e erros.", erro.sqlMessage);
         res.status(500).json(erro.sqlMessage);
     });
 }
@@ -42,7 +55,8 @@ function buscarMedidasEmTempoReal(req, res) {
 }
 
 module.exports = {
-    buscarUltimasMedidas,
-    buscarMedidasEmTempoReal
+    buscarAcertosErros,
+    buscarAlternativasMaisSelecionadas
+    // buscarMedidasEmTempoReal
 
 }
