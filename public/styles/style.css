@@ -20,11 +20,16 @@ h2 {
     font: 400 3.3vh 'Della Respira';
 }
 
+body {
+    font-family: 'Work Sans', sans-serif;
+}
+
 /* PRINCIPAL */
 /* CABEÇALHO */
 header {
     position: fixed;
     width: 100%;
+    z-index: 100;
     background-color: #fff;
     padding: 10px 0;
     box-shadow: 0px 2px 9px -1px rgba(117, 117, 117, 0.30);
@@ -73,6 +78,18 @@ main {
     height: 800px;
     margin: 0 40px;
     border-radius: 40px;
+}
+
+.banner .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 800px;
+}
+
+.banner h1 {
+    color: #fff;
+    font: 400 40px 'Della Respira', serif;
 }
 
 /* FIM DO BANNER */
@@ -164,16 +181,43 @@ main {
     width: 280px;
     height: 400px;
     background-color: #009DDC;
+    text-align: center;
     border-radius: 40px;
+    align-content: flex-end;
+}
+
+.card img {
+    width: 200px;
+    object-fit: cover;
 }
 
 /* FIM PERSONAGENS */
 
 /* JOGOS */
 #jogos {
-    background-color: #009DDC;
     height: 600px;
     margin-top: 100px;
+}
+
+#jogos .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#jogos img {
+    height: 600px;
+    width: 100%;
+    object-fit: cover;
+    filter: brightness(0.5);
+    border-radius: 40px;
+}
+
+#jogos p {
+    position: absolute;
+    z-index: 1;
+    color: #fff;
+    font-size: 24px;
 }
 
 /* FIM JOGOS */
@@ -181,13 +225,79 @@ main {
 /* DESCUBRA */
 #descubra {
     margin-top: 100px;
+    padding: 100px 0;
 }
 
 #descubra .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     text-align: center;
+}
+
+.imgDescubra img {
+    width: 600px;
+    border-radius: 40px;
+}
+
+
+.conteudoDescubra p {
+    font: 400 2vh "Work Sans", sans-serif;
+    text-align: justify;
+    margin-top: 20px;
+}
+
+.conteudoDescubra {
+    text-align: center;
+    width: 720px;
+    order: -1;
+}
+
+.conteudoDescubra {
+    text-align: justify;
+    font: 400 2vh "Work Sans", sans-serif;
+}
+
+.conteudoDescubra li {
+    list-style: none;
 }
 
 /* FIM DESCUBRA */
 
+footer {
+    padding: 50px 0;
+    background-color: #FFCAFB;
+}
 
+footer .container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+footer .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+footer .logo img {
+    width: 120px;
+}
+
+footer .agora {
+    color: #f2ab27;
+}
+
+footer a {
+    margin: 0 10px;
+    color: black;
+    font: 400 2vh "Work Sans", sans-serif;
+}
+
+footer a:hover {
+    color: #f2ab27;
+    transition: ease-in 0.5;
+}
 /* FIM DO PRINCIPAL */

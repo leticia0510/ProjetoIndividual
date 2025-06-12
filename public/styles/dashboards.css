@@ -136,11 +136,9 @@ body {
 /* FIM MENU LATERAL */
 /* DASH */
 .dash-right {
-  display: flex;
   width: 86%;
   height: fit-content;
   position: relative;
-  top: 60px;
   left: 14%;
   height: 100vh;
 }
@@ -153,6 +151,7 @@ body {
 
 .dash-right .avisos {
   width: 100%;
+  margin-top: 60px;
 }
 
 .dash-right .avisos .container {
@@ -163,6 +162,11 @@ body {
 
 .dash-right .avisos .container .div-form {
   width: 95%;
+  position: fixed;
+  left: 70%;
+  top: 70%;
+  justify-self: flex-start;
+  align-self: flex-start;
 }
 
 .dash-right .avisos .container .div-form #form_postagem {
@@ -173,14 +177,14 @@ body {
   width: 95%;
 }
 
-.dash-right .avisos .div-form input {
-  width: 95%;
-  border-radius: 5px;
+.dash-right .avisos .div-form form {
+  display: flex;
+  flex-direction: column;
 }
 
 .dash-right .avisos .div-form textarea {
   width: 95%;
-  border: 3px solid #e6005a;
+  border: 3px solid black;
   background-color: white;
   border-radius: 5px;
 }
@@ -192,31 +196,15 @@ body {
   border-radius: 5px;
   padding: 10px 15px;
   color: white;
-  background-color: #e6005a;
+  background-color: deeppink;
   width: 120px;
+  margin-top: 10px;
 }
 
-.publicacao-btn-editar {
-  cursor: pointer;
-  border: 0;
-  border-radius: 5px;
-  font-weight: 600;
-  font-size: 14px;
-  padding: 5px 8px;
-  color: white;
-  background-color: #e6005a;
-  width: 80px;
-}
-
-.publicacao {
-  display: flex;
-  flex-wrap: wrap;
-  align-content: stretch;
-  flex-direction: column;
-  justify-content: center;
-  align-items: stretch;
-  border-bottom: 3px solid #e6005a;
-  padding: 20px;
+#form_postagem textarea{
+  padding: 10px;
+  font: 400 16px 'Work Sans', sans-serif;
+  width: 400px;
 }
 
 .publicacao>*:not(:last-child) {
@@ -257,6 +245,8 @@ body {
 .infoPosts {
   display: flex;
   justify-content: space-between;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #f2ab27;
 }
 
 .usuario {
@@ -275,13 +265,13 @@ body {
   border: 1px solid #262626;
 }
 
-.usuario img {
+/* .usuario img {
   width: 30px;
 }
 
 .usuario p {
   margin-left: 8px;
-}
+} */
 
 .foto-post img {
   width: 280px;
@@ -349,66 +339,12 @@ body {
   color: white;
 }
 
-.card-aquario {
-  margin: 2%;
-  min-width: 40%;
-  max-width: 50%;
-  width: fit-content;
-  flex-wrap: wrap;
-  display: flex;
-  /* text-align: center; */
-  height: 180px;
-  /* justify-content: right; */
-  font-size: 20px;
-}
-
-.card-aquario h1 {
-  width: fit-content;
-}
-
-.card-aquario p {
-  margin: 0;
-  font-size: 50px;
-  font-weight: lighter;
-  text-align: left;
-}
-
-.desc-aquario {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 100%;
-}
-
-.desc-aquario .cor-alerta {
-  width: 30px;
-}
-
-.title-aquario {
-  width: 100%;
-}
-
-
 .cards h1 {
   font-size: 22px;
   border-bottom: solid white 1px;
   text-align: left;
   font-weight: lighter;
   margin: 20px;
-}
-
-.temperatura,
-.umidade {
-  margin: 5px;
-  margin-left: 20px;
-  width: 75%;
-}
-
-.cor-alerta {
-  width: 13%;
-  height: 30%;
-  border-radius: 50%;
-  display: inline-block;
 }
 
 .btns-dash {
@@ -442,7 +378,7 @@ body {
   width: 100%;
 }
 
-.btn-chart {
+.select-chart {
   font-weight: 600;
   border: 1px solid #f2ab27;
   font-size: 18px;
@@ -451,17 +387,6 @@ body {
   margin: 5px;
   border-radius: 3px;
   cursor: pointer
-}
-
-.btn-pink {
-  color: white;
-  background-color: #e6005a;
-}
-
-.btn-white {
-  color: #e6005a;
-  background-color: white;
-
 }
 
 .label-captura {
@@ -518,6 +443,7 @@ canvas {
   color: rgb(154, 17, 191, 0.2);
   color: rgb(4, 178, 217, 0.2);
   color: rgb(242, 99, 204, 0.2);
+  color: rgb(2, 48, 89, 0.2);
 }
 
 .kpi p {
@@ -532,34 +458,41 @@ canvas {
 }
 
 /* JOGOS */
-.bannerJogo {
-  width: 100%;
-  height: 40vh;
-  background-color: #04B2D9;
+.jogos {
+  margin-top: 60px;
+}
+
+.jogos .container {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-
-.jogosDisponiveis {
-  margin-top: 70px;
-}
-
-.informacaoJogo {
-  margin: 40px 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
+  margin-top: 80px;
 }
 
 .cardJogo {
-  width: 350px;
-  height: 200px;
+  width: 850px;
+  height: 120px;
   border-radius: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: black;
+  overflow: hidden;
+  margin: 5px 0;
+}
+
+.cardJogo h2 {
+  position: absolute;
+  z-index: 1;
+  color: #F1F3F4;
+  font: 500 3.3vh 'Work Sans', sans-serif;
+}
+
+.cardJogo img {
+  width: 850px;
+  height: 120px;
+  object-fit: cover;
+  filter: brightness(0.5);
 }
 
 /* transition: transform .35s ease-in-out; */
@@ -583,9 +516,162 @@ footer .container {
 
 /* ADIVINHA */
 .adivinha {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.voltar {
+  align-self: flex-start;
+  margin-left: 400px;
+}
+
+.voltar i {
+  font-size: 32px;
+  color: #262626;
+}
+
+.adivinha img {
+  width: 200px;
+}
+
+.tentativasAdivinhas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.tentativasAdivinhas input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #f2ab27;
+  outline: unset;
+}
+
+.caixaTextoAjuda {
   text-align: center;
 }
 
-.adivinha h1 {
-  font: 400 3.3vh 'Della Respira';
+.tentativasAdivinhas button {
+  width: 300px;
+  padding: 10px;
+  font: 400 1.5vh 'Work Sans', sans-serif;
+  background-color: rgb(242, 171, 39, 0.5);
+  border: 1px solid #f2ab27;
+  margin-top: 10px;
+  border-radius: 20px;
+}
+
+.resultadoJogo button {
+  width: 300px;
+  padding: 10px;
+  font: 400 1.5vh 'Work Sans', sans-serif;
+  background-color: #FD010480;
+  border: 1px solid #FD0104;
+  margin-top: 10px;
+  border-radius: 20px;
+}
+
+#div_vidas img {
+  width: 30px;
+}
+
+/* QUIZ */
+/* Não usar pure white or pure black: https://uxplanet.org/basicdesign-never-use-pure-black-in-typography-36138a3327a6 */
+/* The 4-point grid system: https://medium.com/@sainzkike/controlling-spacing-in-design-systems-multiple-spacing-9bf1afec87f */
+
+:root {
+  --primary-brand-color: #ED145B;
+  --secondary-brand-color: #0762C8;
+  --success: #198754;
+  --success-dark: #095c36;
+  --success-light: #9dd3ba;
+  --warning: #ffc107;
+  --warning-dark: #705400;
+  --warning-light: #fdebb3;
+  --danger: #dc3545;
+  --danger-dark: #990c19;
+  --danger-light: #f0c1c6;
+  --new-gray: #CCCCCC;
+  --new-black: #212427;
+  --new-white: #E8E8E8;
+}
+
+#pontuacaoEJogo button {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid var(--new-black);
+  margin: 5px 0;
+}
+
+.submeter {
+  background-color: #F205CB80;
+}
+
+.avancar {
+  background-color: #04B2D980;
+}
+
+.tentar {
+  background-color: #D4055E80;
+}
+
+#pontuacaoEJogo {
+  display: flex;
+  flex-direction: column;
+  margin-top: 80px;
+}
+
+.flex-colunar {
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+}
+
+.flex-colunar2 {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-colunar2 span {
+  padding: 5px;
+}
+
+.width-fit-content {
+  width: fit-content;
+}
+
+.border-primary {
+  border: 3px solid var(--primary-brand-color);
+}
+
+.padding-8 {
+  padding: 8px;
+}
+
+.text-bold {
+  font-weight: bold;
+}
+
+.text-success-with-bg {
+  color: var(--success-dark);
+  background-color: var(--success-light);
+}
+
+.text-warning-with-bg {
+  color: var(--warning-dark);
+  background-color: var(--warning-light);
+}
+
+.text-danger-with-bg {
+  color: var(--danger-dark);
+  background-color: var(--danger-light);
+}
+
+.text-new-gray {
+  color: var(--new-gray);
 }

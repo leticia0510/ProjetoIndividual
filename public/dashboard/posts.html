@@ -31,11 +31,11 @@
                 </div>
             </div>
             <div class="nav_dash">
-                <div class="btn-nav-white">
+                <!-- <div class="btn-nav-white">
                     <a href="./cards.html">
                         <i class="fa-solid fa-newspaper"></i>
                     </a>
-                </div>
+                </div> -->
                 <div class="btn-nav-white">
                     <a href="./jogos.html">
                         <i class="fa-solid fa-gamepad"></i>
@@ -62,26 +62,23 @@
         <div class="dash-right">
 
             <div class="avisos">
+                <h1>Publicar um Post</h1>
                 <div class="container">
-                    <h1>Publicar um Post</h1>
-                    <div class="div-form">
-                        <form id="form_postagem" method="post" onsubmit="return publicar()">
-                            <label>
-                                Título:
-                                <br>
-                                <input name="fotoPost" id="fotoPost" maxlength="100" type="text">
-                            </label>
-                            <label>
-                                Descrição (máximo de 250 caracteres):
-                                <br>
-                                <textarea name="texto" id="textarea_texto" maxlength="250" rows="5"></textarea>
-                            </label>
-                            <button>Enviar</button>
-                        </form>
-                    </div>
                     <div class="div-results">
                         <div id="feed_container" class="feed-container">
                         </div>
+                    </div>
+                    <div class="div-form">
+                        <form id="form_postagem" method="post" onsubmit="return publicar()">
+                            <!-- <label>
+                                Título:
+                                <br>
+                                <input name="fotoPost" id="fotoPost" maxlength="100" type="text">
+                            </label> -->
+                            <textarea name="texto" id="textarea_texto" maxlength="250" rows="5"
+                                placeholder="Escreva o que está pensando (máximo de 250 caracteres)"></textarea>
+                            <button>Enviar</button>
+                        </form>
                     </div>
                     <!-- <div class="div_posts">
                         <div class="infoPosts">
@@ -123,7 +120,7 @@
 
         var corpo = {
             texto: form_postagem.texto.value,
-            fotoPost: form_postagem.fotoPost.value
+            // fotoPost: form_postagem.fotoPost.value
         }
 
         fetch(`/posts/publicar/${idUsuario}`, {
@@ -217,17 +214,11 @@
                         divPost.innerHTML = `
                             <div class="infoPosts">
                                 <div class="usuario">
-                                    <div class="img-usuario">
-                                        <img src="./../assets/imgs/iconJake.jpg" alt="">
-                                    </div>
-                                    <p>Jake</p>
+                                    <p>${sessionStorage.NICKNAME_USUARIO}</p>
                                 </div>
                                 <div class="data-post">${publicacao.publicado}</div>
                             </div>
                             <div class="descricaoPost">
-                                <div class="foto-post">
-                                    <img src="./../assets/imgs/iconJake.jpg" alt="">
-                                </div>
                                 <div class="post-texto">
                                     <p>${publicacao.texto}</p>
                                 </div>

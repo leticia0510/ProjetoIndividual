@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="./styles/login.css">
     <link rel="icon" href="./assets/icon/favicon2.png">
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -20,7 +21,10 @@
     <!--Header-->
 
     <header>
-        <a href="index.html">voltar</a>
+        <a href="./index.html">
+            <i class="fa-solid fa-arrow-left"></i>
+            <p>Voltar</p>
+        </a>
     </header>
 
 
@@ -57,8 +61,7 @@
     <!--footer inicio-->
     <div class="footer">
         <div class="container">
-            <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
-            <span class="version">v1.0.0</span>
+            <p>Todos os direitos resevados</p>
         </div>
     </div>
     <!--footer fim-->
@@ -90,7 +93,7 @@
             if (resposta.ok) {
                 resposta.json().then(function (resposta) {
 
-                    sessionStorage.QUESTAO = JSON.stringify(resposta)   
+                    sessionStorage.QUESTAO = JSON.stringify(resposta)
                 })
             }
         })
@@ -119,10 +122,10 @@
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.NICKNAME_USUARIO = json.nickname,
-                    sessionStorage.ID_USUARIO = json.id;
+                        sessionStorage.ID_USUARIO = json.id;
 
                     setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
+                        window.location = "./dashboard/dashboard.html";
                     }, 1000); // apenas para exibir o loading
 
                 });

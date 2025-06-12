@@ -7,24 +7,36 @@
     <title>Adivinhação</title>
     <link rel="icon" href="./assets/icon/favicon2.png">
     <link rel="stylesheet" href="../styles/dashboards.css">
+    <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
 
     <main>
         <section class="adivinha">
+            <div class="voltar">
+                <a href="./jogos.html">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
+            </div>
+            <img src="./../assets/imgs/oquejakeestapensando.png" alt="">
             <h1>Adivinhe o número de 1 a 100</h1>
             <div class="caixaTextoAjuda">
+                <div id="qtd_vidas"></div>
                 <div id="div_ajuda"></div>
             </div>
-            <div class="tentativasAdivinhas">
-                <label>Escolha um número: </label>
-                <input type="number" id="ipt_numEscolhido">
+            <div class="tentativasAdivinhas" id="div_tentativa">
+                <div class="campoNum">
+                    <label>Escolha um número: </label>
+                    <input type="number" id="ipt_numEscolhido">
+                </div>
                 <button onclick="numeroEscolhido()">Tente a sorte</button>
             </div>
             <div class="resultadoJogo">
                 <div id="div_resultadoJogo"></div>
-                <a href="adivinhacao.html"><button>Tente Novamente</button></a>
+                <div id="novaTentativa" class="display-none">
+                    <a href="adivinhacao.html"><button>Tente Novamente</button></a>
+                </div>
             </div>
         </section>
     </main>
@@ -42,27 +54,36 @@
     function numeroEscolhido() {
         let numEscolhido = Number(ipt_numEscolhido.value);
 
-        if(numEscolhido > 100 || numEscolhido < 1){
+        if (numEscolhido > 100 || numEscolhido < 1) {
             alert('Informe um número válido');
             return;
         }
 
-        if(numEscolhido < numAleatorio){
+        if (numEscolhido < numAleatorio) {
+            vidas--;
             div_ajuda.innerHTML = `É maior que ${numEscolhido}`;
+            qtd_vidas.innerHTML = `Você tem ${vidas} vida(s) restante(s)`
+        } else if (numEscolhido > numAleatorio) {
             vidas--;
-        }else if(numEscolhido > numAleatorio){
             div_ajuda.innerHTML = `É menor que ${numEscolhido}`;
-            vidas--;
-        }else if(numEscolhido == numAleatorio){
+            qtd_vidas.innerHTML = `Você tem ${vidas} vida(s) restante(s)`
+        } else if (numEscolhido == numAleatorio) {
+            div_resultadoJogo.innerHTML = '';
             div_ajuda.innerHTML = `Parabéns você acertou faltando ${vidas} vidas`;
+            div_tentativa.style.display = 'none';
+            novaTentativa.classList.remove("display-none");
+            return;
         }
-        
-        if(vidas == 0 && numEscolhido != numAleatorio){
+
+        if (vidas == 0 && numEscolhido != numAleatorio) {
             mostrarPontuacao();
         }
     }
 
     function mostrarPontuacao() {
-        div_resultadoJogo.innerHTML = `Fim de jogo! Suas vidas acabaram`;
+        div_resultadoJogo.innerHTML = '';
+        div_resultadoJogo.innerHTML += `Fim de jogo! Suas vidas acabaram`;
+        div_tentativa.style.display = 'none';
+        novaTentativa.classList.remove("display-none");
     }
 </script>

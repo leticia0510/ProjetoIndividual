@@ -32,11 +32,11 @@
                 </div>
             </div>
             <div class="nav_dash">
-                <div class="btn-nav-white">
+                <!-- <div class="btn-nav-white">
                     <a href="./cards.html">
                         <i class="fa-solid fa-newspaper"></i>
                     </a>
-                </div>
+                </div> -->
                 <div class="btn-nav-white">
                     <a href="./jogos.html">
                         <i class="fa-solid fa-gamepad"></i>
@@ -71,9 +71,9 @@
                     </div>
                     <div class="todosOsGraficoa">
                         <div class="dashboardUm">
-                            <div class="btns-dash" id="btnAquario">
+                            <div class="btns-dash" id="btnQuestao">
                                 <div id="questaoGeral">
-                                    <select id="select_questao" class="btn-chart"
+                                    <select id="select_questao" class="select-chart"
                                         onchange="exibirQuestao(this.options[this.selectedIndex].value)">
 
                                     </select>
@@ -206,13 +206,13 @@
                     'rgba(4, 178, 217, 0.2)',
                     'rgba(242, 168, 29, 0.2)',
                     'rgba(242, 99, 204, 0.2)',
-                    'rgba(242, 99, 204, 0.2)'
+                    'rgba(2, 48, 89, 0.2)'
                 ],
                 borderColor: [
                     'rgb(4, 178, 217)',
                     'rgb(242, 168, 29)',
                     'rgb(242, 99, 204)',
-                    'rgb(242, 99, 204)'
+                    'rgb(2, 48, 89)'
                 ],
                 borderWidth: 1
             }]
@@ -301,15 +301,15 @@
         let dados = {
             labels: labels,
             datasets: [{
-                label: 'Opções Selecionadas',
+                label: 'Acertos',
                 data: [],
                 fill: false,
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgba(4, 178, 217, 0.2)',
+                borderColor: 'rgb(4, 178, 217)',
                 borderWidth: 1,
                 tension: 0.1
             }, {
-                label: 'Temperatura',
+                label: 'Erros',
                 data: [],
                 fill: false,
                 backgroundColor: 'rgba(255, 159, 64, 0.2)',

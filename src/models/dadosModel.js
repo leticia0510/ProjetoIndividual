@@ -30,9 +30,9 @@ function buscarAcertosErros() {
     return database.executar(instrucaoSql);
 }
 
-function buscarQuantasVezesOQuizFoiRealizado(idAquario) {
+function buscarQuantasVezesOQuizFoiRealizado() {
 
-    var instrucaoSql = `SELECT COUNT(fkusuario) / 3 AS realizado FROM respostasQ1;`;
+    var instrucaoSql = `SELECT COUNT(fkusuario) / 10 AS realizado FROM respostasQ1;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

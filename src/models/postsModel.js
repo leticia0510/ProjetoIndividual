@@ -6,7 +6,6 @@ function listar() {
         SELECT 
             p.id AS idPost,
             p.texto,
-            p.fotoPost,
             date_format(p.publicado, '%d/%m/%Y') AS publicado,
             p.fkUsuario,
             u.id AS idUsuario,
@@ -27,7 +26,6 @@ function pesquisarTextos(texto) {
         SELECT 
             p.id AS idPost,
             p.texto,
-            p.fotoPost,
             p.fkUsuario,
             u.id AS idUsuario,
             u.nome,
@@ -48,7 +46,6 @@ function listarPorUsuario(idUsuario) {
         SELECT 
             p.id AS idPost,
             p.texto,
-            p.fotoPost,
             p.fkUsuario,
             u.id AS idUsuario,
             u.nome,
@@ -63,10 +60,10 @@ function listarPorUsuario(idUsuario) {
     return database.executar(instrucaoSql);
 }
 
-function publicar(texto, fotoPost, idUsuario) {
-    console.log("ACESSEI O POSTS MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function publicar(): ", texto, fotoPost, idUsuario);
+function publicar(texto, idUsuario) {
+    console.log("ACESSEI O POSTS MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function publicar(): ", texto, idUsuario);
     var instrucaoSql = `
-        INSERT INTO posts (texto, fotoPost, fkUsuario) VALUES ('${texto}', '${fotoPost}', ${idUsuario});
+        INSERT INTO posts (texto, fkUsuario) VALUES ('${texto}', ${idUsuario});
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

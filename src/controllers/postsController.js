@@ -62,7 +62,7 @@ function pesquisarPost(req, res) {
 
 function publicar(req, res) {
     var texto = req.body.texto;
-    var fotoPost = req.body.fotoPost;
+    // var fotoPost = req.body.fotoPost;
     var idUsuario = req.params.idUsuario;
 
     if (texto == undefined) {
@@ -70,7 +70,7 @@ function publicar(req, res) {
     } else if (idUsuario == undefined) {
         res.status(403).send("O id do usuário está indefinido!");
     } else {
-        postsModel.publicar(texto, fotoPost, idUsuario)
+        postsModel.publicar(texto, idUsuario)
             .then(
                 function (resultado) {
                     res.json(resultado);
