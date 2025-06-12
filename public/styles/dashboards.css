@@ -232,7 +232,7 @@ body {
   border-radius: 5px;
   margin-bottom: 80px;
   display: flex;
-  flex-wrap: wrap ;
+  flex-wrap: wrap;
   /* grid-template-columns: repeat(4, 1fr); */
 }
 
@@ -287,24 +287,21 @@ body {
   width: 280px;
 }
 
-.post-texto, .foto-post {
+.post-texto,
+.foto-post {
   margin-top: 10px;
 }
 
-/* pagina graficos */
-
-
+/* DASHBOARD */
 .dash {
-  width: 86%;
+  width: 82%;
   height: fit-content;
   position: relative;
-  top: 60px;
   left: 14%;
   height: 100vh;
 }
 
 .area-parametros-alerta {
-  /* border: 2px solid pink; */
   display: flex;
   flex-direction: column;
   width: 70%;
@@ -426,14 +423,23 @@ body {
   color: #04B2D9;
 }
 
-.dashboardUm {
-  text-align: center;
-  width: 40%;
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  margin-top: 60px;
 }
 
+.dashboard .container {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  align-self: center;
+}
+
+.dashboardUm,
 .dashboardDois {
   text-align: center;
-  width: 60%;
+  width: 100%;
 }
 
 .btn-chart {
@@ -479,6 +485,51 @@ canvas {
   height: 100% !important;
 }
 
+.todosOsGraficoa {
+  display: flex;
+  align-items: end;
+}
+
+.todosOsGraficoa .dashboardDois {
+  margin-left: 50px;
+}
+
+.kpis {
+  align-self: center;
+}
+
+.kpi {
+  border: 1px solid #04B2D9;
+  background-color: #04B2D9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  color: #ffffff;
+  width: 320px;
+  height: 100px;
+  border-radius: 20px;
+  align-self: center;
+}
+
+.amor {
+  color: rgb(242, 168, 29, 0.2);
+  color: rgb(154, 17, 191, 0.2);
+  color: rgb(4, 178, 217, 0.2);
+  color: rgb(242, 99, 204, 0.2);
+}
+
+.kpi p {
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.kpi #dadoKpi {
+  font-size: 24px;
+  font-weight: 400;
+}
 
 /* JOGOS */
 .bannerJogo {

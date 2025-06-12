@@ -59,25 +59,32 @@
             </div>
         </div>
 
-
         <div class="dash">
             <div class="dashboard">
+                <h1>Dashboard</h1>
                 <div class="container">
-                    <h1>Dashboard</h1>
-                    <div class="dashboardUm">
-                        <div class="btns-dash" id="btnAquario">
-                            <div id="questaoGeral">
-                                <select id="select_questao" class="btn-chart"
-                                    onchange="exibirQuestao(this.options[this.selectedIndex].value)">
-
-                                </select>
-                            </div>
-                        </div>
-                        <div id="graficos">
+                    <div class="kpis">
+                        <div class="kpi">
+                            <p>Qtd de vezes que o quiz foi realizado</p>
+                            <div id="dadoKpi"></div>
                         </div>
                     </div>
-                    <div class="dashboardDois">
-                        <div id="graficosEA"></div>
+                    <div class="todosOsGraficoa">
+                        <div class="dashboardUm">
+                            <div class="btns-dash" id="btnAquario">
+                                <div id="questaoGeral">
+                                    <select id="select_questao" class="btn-chart"
+                                        onchange="exibirQuestao(this.options[this.selectedIndex].value)">
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="graficos">
+                            </div>
+                        </div>
+                        <div class="dashboardDois">
+                            <div id="graficosEA"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -96,6 +103,7 @@
 
     window.onload = exibirTodasAsQuestoes();
     window.onload = graficoErroAcerto();
+    window.onload = kpi();
 
     function exibirTodasAsQuestoes() {
         var questaoSele = JSON.parse(sessionStorage.QUESTAO);
@@ -180,7 +188,6 @@
             });
     }
 
-
     // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
     // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
     // A função *plotarGrafico* também invoca a função *atualizarGrafico*
@@ -196,16 +203,16 @@
                 label: 'Opções Selecionadas',
                 data: [],
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(255, 205, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)'
+                    'rgba(4, 178, 217, 0.2)',
+                    'rgba(242, 168, 29, 0.2)',
+                    'rgba(242, 99, 204, 0.2)',
+                    'rgba(242, 99, 204, 0.2)'
                 ],
                 borderColor: [
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 159, 64)',
-                    'rgb(255, 205, 86)',
-                    'rgb(75, 192, 192)',
+                    'rgb(4, 178, 217)',
+                    'rgb(242, 168, 29)',
+                    'rgb(242, 99, 204)',
+                    'rgb(242, 99, 204)'
                 ],
                 borderWidth: 1
             }]
@@ -250,7 +257,7 @@
         document.getElementById("graficosEA").innerHTML = `
             <div id="grafico" class="display">
                 <h3 class="tituloGraficos">
-                    <span id="tituloQuestao">Erros e Acertos</span>
+                    <span id="tituloQuestao">Quantidade de erros e acertos por questão</span>
                 </h3>
                 <div class="graph">
                     <canvas id="myChartCanvasAE"></canvas>
@@ -319,8 +326,8 @@
         // Inserindo valores recebidos em estrutura para plotar o gráfico
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
-            labels.push(registro.pergunta)
-            // labels.push(`Pergunta ${registro.fkquestao}`);
+            // labels.push(registro.pergunta)
+            labels.push(`Pergunta ${registro.fkquestao}`);
             dados.datasets[0].data.push(registro.acertos);
             dados.datasets[1].data.push(registro.erros);
         }
@@ -346,6 +353,18 @@
         );
 
         setTimeout(() => (dados, myChart), 2000);
+    }
+
+    function kpi() {
+        fetch("/dados/qtdRealizado", { cache: "no-store" }).then((response) => {
+            if (response.ok) {
+                response.json().then((resposta) => {
+                    console.log('vamos ver')
+                    console.log(resposta[0])
+                    document.getElementById("dadoKpi").innerHTML = Number(resposta[0].realizado);
+                })
+            }
+        })
     }
 
 </script>

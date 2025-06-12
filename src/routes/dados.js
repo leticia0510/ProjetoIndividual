@@ -11,8 +11,8 @@ router.get("/alternativa/:idQuestao", function (req, res) {
     dadosController.buscarAlternativasMaisSelecionadas(req, res);
 });
 
-router.get("/tempo-real/:idAquario", function (req, res) {
-    dadosController.buscarMedidasEmTempoReal(req, res);
+router.get("/qtdRealizado", function (req, res) {
+    dadosController.buscarQuantasVezesOQuizFoiRealizado(req, res);
 })
 
 module.exports = router;
