@@ -23,8 +23,8 @@ function autenticar(req, res) {
                             email: resultadoAutenticar[0].email,
                             nome: resultadoAutenticar[0].nome,
                             senha: resultadoAutenticar[0].senha,
-                            nickname: resultadoAutenticar[0].nickname,
                             dtNasc: resultadoAutenticar[0].dtNasc,
+                            nickname: resultadoAutenticar[0].nickname,
                         });
 
 
@@ -68,7 +68,7 @@ function cadastrar(req, res) {
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, senha, nickname, dtNasc)
+        usuarioModel.cadastrar(nome, email, senha, dtNasc, nickname)
             .then(
                 function (resultado) {
                     res.json(resultado);
